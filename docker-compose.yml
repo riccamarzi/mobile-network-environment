@@ -1,0 +1,163 @@
+version: '3.9'
+services:
+        mongo:
+                image: mongo:latest
+                env_file:
+                        - .env
+                networks:
+                        appnet:
+                                ipv4_address: ${MONGO_IP}
+                                #healthcheck:
+                                #test: ["CMD", "mongo", "--quiet", "'127.0.0.1/test'", "--eval", "'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'"]
+                                #interval: 5s
+                                #timeout: 5s
+
+        open5gs_hss: 
+                build: ./open5gs
+                image: open5gs_docker
+                container_name: open5gs_hss
+                tty: true
+                stdin_open: true
+                depends_on:
+                        mongo:
+                                condition: service_healthy
+                environment:
+                        - OPEN5GS_COMPONENT=hss
+                volumes: 
+                        - ./open5gs/hss:/mnt
+                env_file:
+                        - .env
+                networks:
+                        appnet:
+                                ipv4_address: ${HSS_IP}
+
+        pcscf:
+                build: ./kamailio_docker
+                image: kamailio_docker
+                container_name: kamailio_pcscf
+                tty: true 
+                stdin_open: true
+                volumes:
+                        - ./kamailio_docker/pcscf:/mnt
+                env_file:
+                        - .env
+                environment:
+                        - MYSQL_IP=${KAMAILIO_MYSQL_IP}
+                        - KAMAILIO_COMPONENT=pcscf
+                depends_on: 
+                        mysql:
+                                condition: service_healthy
+                networks:
+                        appnet:
+                                ipv4_address: ${KAMAILIO_PCSCF_IP}
+                                aliases:
+                                        - pcscf
+                                        - pcscf.ims.mnc001.mcc001.3gppnetwork.org
+        mysql: 
+                image: mysql:5.7
+                container_name: mysql
+                environment:
+                        - MYSQL_ROOT_PASSWORD=${KAMAILIO_MYSQL_PWD}
+                tty: true
+                stdin_open: true
+                env_file:
+                        - .env
+                networks:
+                        appnet:
+                                ipv4_address: ${KAMAILIO_MYSQL_IP}
+                expose:
+                        - "3306/tcp"
+                healthcheck:
+                        test: ["CMD", "mysql", "-u", "root", "-proot"]
+                        timeout: 10s
+                        interval: 10s
+        icscf:
+                image: kamailio_docker
+                environment:
+                        - KAMAILIO_COMPONENT=icscf
+                env_file:
+                        - .env
+                container_name: kamailio_icscf
+                dns: 
+                        - 8.8.8.8
+                        - ${DNS_IP}
+                dns_search:
+                        - ims.mnc001.mcc001.3gppnetwork.org
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./kamailio_docker/icscf:/mnt
+                depends_on: 
+                        - pcscf
+                networks:
+                        appnet:
+                                ipv4_address: ${KAMAILIO_ICSCF_IP}
+                                aliases: 
+                                        - icscf
+                                        - icscf.ims.mnc001.mcc001.3gppnetwork.org
+        scscf:
+                tty: true
+                stdin_open: true
+                dns:
+                        - 8.8.8.8
+                        - ${DNS_IP}
+                dns_search:
+                        - ims.mnc001.mcc001.3gppnetwork.org
+                environment:
+                        - KAMAILIO_COMPONENT=scscf
+                image: kamailio_docker
+                env_file:
+                        - .env
+                container_name: kamailio_scscf
+                volumes:
+                        - ./kamailio_docker/scscf:/mnt
+                depends_on: 
+                        - pcscf
+                networks:
+                        appnet:
+                                ipv4_address: ${KAMAILIO_SCSCF_IP}
+                                aliases:
+                                        - scscf
+                                        - scscf.ims.mnc001.mcc001.3gppnetwork.org
+        rtpengine:
+                networks:
+                        appnet:
+                                ipv4_address: ${KAMAILIO_RTP_IP}
+                tty: true
+                stdin_open: true
+                privileged: true
+                environment:
+                        - TABLE=0
+                        - INTERFACE=${KAMAILIO_RTP_IP}
+                        - LISTEN_NG=${KAMAILIO_RTP_IP}:2223
+                        - PIDFILE=/run/ngcp-rtpengine-daemon.pid
+                        - PORT_MAX=50000
+                        - PORT_MIN=49000
+                        - NO_FALLBACK=no
+                        - TOS=184
+                build: ./rtpengine
+                container_name: kamailio_rtpengine
+                volumes: 
+                        - ./rtpengine:/mnt
+        dns:
+                networks:
+                        appnet:
+                                ipv4_address: ${DNS_IP}
+                                aliases:
+                                        - dns
+                tty: true
+                stdin_open: true
+                build: ./dns
+                env_file:
+                        - .env
+                container_name: dns
+                volumes: 
+                        - ./dns/dns_conf:/mnt
+
+networks:
+        appnet:
+                #driver: bridge
+                ipam: 
+                #driver: default
+                        config:
+                                - subnet: ${NETWORK_SUBNET}
