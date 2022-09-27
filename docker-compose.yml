@@ -12,13 +12,15 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${MONGO_IP}
-
         open5gs_hss: 
                 build: ./open5gs
                 image: open5gs_docker
                 container_name: open5gs_hss
                 tty: true
                 stdin_open: true
+                expose:
+                        - "3868/tcp"
+                        - "3868/udp"
                 depends_on:
                        mongo:
                                condition: service_healthy
@@ -31,7 +33,41 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${HSS_IP}
-
+                                aliases:
+                                        - hss
+                                        - hss.ims.mnc001.mcc001.3gppnetwork.org
+        open5gs_mme:
+                image: open5gs_docker
+                container_name: open5gs_mme
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./open5gs/mme:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=mme
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_MME_IP}
+        open5gs_sgwc:
+                image: open5gs_docker
+                container_name: open5gs_sgwc
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./open5gs/sgwc:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=sgwc
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_SGWC_IP}
         pcscf:
                 build: ./kamailio_docker
                 image: kamailio_docker
@@ -126,6 +162,8 @@ services:
                                 ipv4_address: ${KAMAILIO_RTP_IP}
                 tty: true
                 stdin_open: true
+                expose:
+                        - "2223/tcp"
                 privileged: true
                 environment:
                         - TABLE=0
