@@ -11,6 +11,10 @@ case $OPEN5GS_COMPONENT in
 		cp /mnt/mme.yaml /open5gs/install/etc/open5gs
 		cp /mnt/mme.conf /open5gs/install/etc/freeDiameter
 		sed -i "s/HSS_IP/$HSS_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
+		sed -i "s/SGWC_IP/$OPEN5GS_SGWC_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
+		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
+		sed -i "s/SMF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
+		sed -i "s/SMF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
 		/open5gs/install/bin/open5gs-mmed
 		;;
 	sgwc)

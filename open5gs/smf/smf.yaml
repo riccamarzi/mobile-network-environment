@@ -474,8 +474,7 @@ smf:
 nrf:
     sbi:
       - addr:
-          - 127.0.0.10
-          - ::1
+          - NRF_IP
         port: 7777
 
 #
@@ -532,7 +531,7 @@ nrf:
 #
 upf:
     pfcp:
-      - addr: 127.0.0.7
+      - addr: UPF_IP
 
 #
 # parameter:
