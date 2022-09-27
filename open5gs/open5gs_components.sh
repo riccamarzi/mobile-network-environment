@@ -36,6 +36,10 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/amf.yaml
 		/open5gs/install/bin/open5gs-amfd
 		;;
+	upf)
+		cp /mnt/upf.yaml /open5gs/install/etc/open5gs
+		/open5gs/install/bin/open5gs-upfd
+		;;
 	pcrf)
 		cp /mnt/pcrf.yaml /open5gs/install/etc/open5gs
 		cp /mnt/pcrf.conf /open5gs/install/etc/freeDiameter

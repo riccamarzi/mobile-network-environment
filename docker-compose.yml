@@ -101,6 +101,22 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_SMF_IP}
+        open5gs_upf:
+                image: open5gs_docker
+                container_name: open5gs_upf
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./open5gs/upf:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=upf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_UPF_IP}
         open5gs_amf:
                 image: open5gs_docker
                 container_name: open5gs_amf
@@ -133,6 +149,8 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_PCRF_IP}
+                                aliases:
+                                        - pcrf.epc.mnc001.mcc001.3gppnetwork.org
         ############## END OPEN5GS ###############
         pcscf:
                 build: ./kamailio_docker
