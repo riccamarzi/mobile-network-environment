@@ -151,6 +151,20 @@ services:
                                 ipv4_address: ${OPEN5GS_PCRF_IP}
                                 aliases:
                                         - pcrf.epc.mnc001.mcc001.3gppnetwork.org
+        open5gs_nrf:
+                image: open5gs_docker
+                container_name: open5gs_nrf
+                volumes: 
+                        - ./open5gs/nrf:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=nrf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_NRF_IP}
         ############## END OPEN5GS ###############
         pcscf:
                 build: ./kamailio_docker
