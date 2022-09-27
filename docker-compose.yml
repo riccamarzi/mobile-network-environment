@@ -68,6 +68,38 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_SGWC_IP}
+        open5gs_smf:
+                image: open5gs_docker
+                container_name: open5gs_smf
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./open5gs/smf:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=smf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_SMF_IP}
+        open5gs_pcrf:
+                image: open5gs_docker
+                container_name: open5gs_pcrf
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./open5gs/pcrf:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=pcrf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_PCRF_IP}
         pcscf:
                 build: ./kamailio_docker
                 image: kamailio_docker

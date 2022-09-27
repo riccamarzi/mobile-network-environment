@@ -1,4 +1,4 @@
-db_uri: mongodb://${MONGO_IP}/open5gs
+db_uri: mongodb://MONGO_IP/open5gs
 
 #
 # logger:
@@ -20,10 +20,10 @@ db_uri: mongodb://${MONGO_IP}/open5gs
 #    level: trace
 #    domain: core,fd,pcrf,event,mem,sock
 logger:
-    file: /var/log/open5gs/pcrf.log
+    file: /open5gs/install/var/log/open5gs/pcrf.log
 
 pcrf:
-    freeDiameter: /etc/freeDiameter/pcrf.conf
+    freeDiameter: /open5gs/install/etc/freeDiameter/pcrf.conf
 
 #
 # parameter:

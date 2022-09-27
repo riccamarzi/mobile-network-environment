@@ -17,4 +17,17 @@ case $OPEN5GS_COMPONENT in
 		cp /mnt/sgwc.yaml /open5gs/install/etc/open5gs
 		/open5gs/install/bin/open5gs-sgwcd
 		;;
+	smf)
+		cp /mnt/smf.yaml /open5gs/install/etc/open5gs
+		cp /mnt/smf.conf /open5gs/install/etc/freeDiameter
+		sed -i "s/PCRF_IP/$OPEN5GS_PCRF_IP/g" /open5gs/install/etc/freeDiameter/smf.conf
+		/open5gs/install/bin/open5gs-smfd
+		;;
+	pcrf)
+		cp /mnt/pcrf.yaml /open5gs/install/etc/open5gs
+		cp /mnt/pcrf.conf /open5gs/install/etc/freeDiameter
+		sed -i "s/MONGO_IP/$MONGO_IP/g" /open5gs/install/etc/open5gs/pcrf.yaml
+		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
+		/open5gs/install/bin/open5gs-pcrfd
+		;;
 esac
