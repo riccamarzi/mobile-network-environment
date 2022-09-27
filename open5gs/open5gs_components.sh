@@ -12,9 +12,9 @@ case $OPEN5GS_COMPONENT in
 		cp /mnt/mme.conf /open5gs/install/etc/freeDiameter
 		sed -i "s/HSS_IP/$HSS_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
 		sed -i "s/SGWC_IP/$OPEN5GS_SGWC_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
-		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
-		sed -i "s/SMF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
-		sed -i "s/SMF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
+		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/open5gs/mme.yaml
+		sed -i "s/SMF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/mme.yaml
+		sed -i "s/SMF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/open5gs/mme.yaml
 		/open5gs/install/bin/open5gs-mmed
 		;;
 	sgwc)
@@ -24,8 +24,12 @@ case $OPEN5GS_COMPONENT in
 	smf)
 		cp /mnt/smf.yaml /open5gs/install/etc/open5gs
 		cp /mnt/smf.conf /open5gs/install/etc/freeDiameter
-		sed -i "s/PCRF_IP/$OPEN5GS_PCRF_IP/g" /open5gs/install/etc/freeDiameter/smf.conf
+		sed -i "s/PCRF_IP/$OPEN5GS_PCRF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		/open5gs/install/bin/open5gs-smfd
+		;;
+	amf)
+		cp /mnt/amf.yaml /open5gs/install/etc/open5gs
+		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/amf.yaml
 		;;
 	pcrf)
 		cp /mnt/pcrf.yaml /open5gs/install/etc/open5gs

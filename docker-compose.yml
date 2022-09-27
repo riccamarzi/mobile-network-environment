@@ -12,6 +12,7 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${MONGO_IP}
+        ########## OPEN5GS ########################
         open5gs_hss: 
                 build: ./open5gs
                 image: open5gs_docker
@@ -84,6 +85,22 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_SMF_IP}
+        open5gs_amf:
+                image: open5gs_docker
+                container_name: open5gs_amf
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./open5gs/amf:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=amf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_AMF_IP}
         open5gs_pcrf:
                 image: open5gs_docker
                 container_name: open5gs_pcrf
@@ -100,6 +117,7 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_PCRF_IP}
+        ############## END OPEN5GS ###############
         pcscf:
                 build: ./kamailio_docker
                 image: kamailio_docker

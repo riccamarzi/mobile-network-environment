@@ -19,7 +19,7 @@
 #    domain: core,ngap,nas,gmm,sbi,amf,event,tlv,mem,sock
 #
 logger:
-    file: /var/log/open5gs/amf.log
+    file: /open5gs/install/var/log/open5gs/amf.log
 #
 # amf:
 #
@@ -259,26 +259,26 @@ logger:
 #
 amf:
     sbi:
-      - addr: 127.0.0.5
+      - addr: 0.0.0.0
         port: 7777
     ngap:
-      - addr: 127.0.0.5
+      - addr: 0.0.0.0
     guami:
       - plmn_id:
-          mcc: 999
-          mnc: 70
+          mcc: 001
+          mnc: 01
         amf_id:
           region: 2
           set: 1
     tai:
       - plmn_id:
-          mcc: 999
-          mnc: 70
+          mcc: 001
+          mnc: 01
         tac: 1
     plmn_support:
       - plmn_id:
-          mcc: 999
-          mnc: 70
+          mcc: 001
+          mnc: 01
         s_nssai:
           - sst: 1
     security:
@@ -329,8 +329,7 @@ amf:
 nrf:
     sbi:
       - addr:
-          - 127.0.0.10
-          - ::1
+          - NRF_IP
         port: 7777
 
 #
