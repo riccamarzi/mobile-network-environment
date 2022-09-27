@@ -19,7 +19,7 @@
 #    domain: core,pfcp,gtp,sgwu,event,tlv,mem,sock
 #
 logger:
-    file: /var/log/open5gs/sgwu.log
+    file: /open5gs/install/var/log/open5gs/sgwu.log
 
 #
 # sgwu:
@@ -98,7 +98,7 @@ logger:
 #
 sgwu:
     pfcp:
-      - addr: 127.0.0.6
+      - addr: 0.0.0.0
     gtpu:
       - addr: 0.0.0.0
 

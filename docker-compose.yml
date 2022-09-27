@@ -69,6 +69,22 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_SGWC_IP}
+        open5gs_sgwu:
+                image: open5gs_docker
+                container_name: open5gs_sgwu
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./open5gs/sgwu:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=sgwu
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_SGWU_IP}
         open5gs_smf:
                 image: open5gs_docker
                 container_name: open5gs_smf

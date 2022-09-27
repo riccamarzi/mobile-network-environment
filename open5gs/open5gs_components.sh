@@ -21,6 +21,10 @@ case $OPEN5GS_COMPONENT in
 		cp /mnt/sgwc.yaml /open5gs/install/etc/open5gs
 		/open5gs/install/bin/open5gs-sgwcd
 		;;
+	sgwu)
+		cp /mnt/sgwu.yaml /open5gs/install/etc/open5gs
+		/open5gs/install/bin/open5gs-sgwud
+		;;
 	smf)
 		cp /mnt/smf.yaml /open5gs/install/etc/open5gs
 		cp /mnt/smf.conf /open5gs/install/etc/freeDiameter
@@ -30,6 +34,7 @@ case $OPEN5GS_COMPONENT in
 	amf)
 		cp /mnt/amf.yaml /open5gs/install/etc/open5gs
 		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/amf.yaml
+		/open5gs/install/bin/open5gs-amfd
 		;;
 	pcrf)
 		cp /mnt/pcrf.yaml /open5gs/install/etc/open5gs
