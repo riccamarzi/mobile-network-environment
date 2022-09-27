@@ -37,6 +37,7 @@ services:
                                 aliases:
                                         - hss
                                         - hss.ims.mnc001.mcc001.3gppnetwork.org
+                                        - hss.epc.mnc001.mcc001.3gppnetwork.org
         open5gs_mme:
                 image: open5gs_docker
                 container_name: open5gs_mme
