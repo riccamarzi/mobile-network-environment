@@ -67,6 +67,11 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/udm.yaml
 		/open5gs/install/bin/open5gs-udmd
 		;;
+	nssf)
+		cp /mnt/nssf.yaml /open5gs/install/etc/open5gs
+		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/nssf.yaml
+		/open5gs/install/bin/open5gs-nssfd
+		;;
 	pcf)
 		cp /mnt/pcf.yaml /open5gs/install/etc/open5gs
 		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/pcf.yaml

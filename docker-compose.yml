@@ -213,6 +213,20 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_PCF_IP}
+        open5gs_nssf:
+                image: open5gs_docker
+                container_name: open5gs_nssf
+                volumes: 
+                        - ./open5gs/nssf:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=nssf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_NSSF_IP}
         ############## END OPEN5GS ###############
         ############## KAMAILIO ##################
         pcscf:
