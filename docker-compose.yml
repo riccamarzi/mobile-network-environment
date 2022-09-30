@@ -167,6 +167,7 @@ services:
                         appnet:
                                 ipv4_address: ${OPEN5GS_NRF_IP}
         ############## END OPEN5GS ###############
+        ############## KAMAILIO ##################
         pcscf:
                 build: ./kamailio_docker
                 image: kamailio_docker
@@ -178,7 +179,6 @@ services:
                 env_file:
                         - .env
                 environment:
-                        - MYSQL_IP=${KAMAILIO_MYSQL_IP}
                         - KAMAILIO_COMPONENT=pcscf
                 depends_on: 
                         mysql:
@@ -277,6 +277,7 @@ services:
                 container_name: kamailio_rtpengine
                 volumes: 
                         - ./rtpengine:/mnt
+        ############ END KAMAILIO ##############
         dns:
                 networks:
                         appnet:

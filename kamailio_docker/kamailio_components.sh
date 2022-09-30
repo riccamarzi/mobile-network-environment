@@ -36,6 +36,7 @@ case $KAMAILIO_COMPONENT in
 		mkdir -p /var/run/kamailio_pcscf
 		cp -r /mnt/pcscf_config /etc/kamailio_pcscf
 		sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /etc/kamailio_pcscf/pcscf.cfg 
+		sed -i "s/KAMAILIO_RTP_IP/$KAMAILIO_RTP_IP/g" /etc/kamailio_pcscf/kamailio_pcscf.cfg
 		kamailio -f /etc/kamailio_pcscf/kamailio_pcscf.cfg -P /kamailio_pcscf.pid -DD -E -e
 		;;
 esac
