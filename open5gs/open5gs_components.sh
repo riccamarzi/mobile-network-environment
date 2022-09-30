@@ -30,7 +30,7 @@ case $OPEN5GS_COMPONENT in
 		cp /mnt/smf.conf /open5gs/install/etc/freeDiameter
 		sed -i "s/PCRF_IP/$OPEN5GS_PCRF_IP/g" /open5gs/install/etc/freeDiameter/smf.conf
 		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
-		sed -i "s/UPF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/open5gs/amf.yaml
+		sed -i "s/UPF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		/open5gs/install/bin/open5gs-smfd
 		;;
 	amf)
@@ -40,7 +40,11 @@ case $OPEN5GS_COMPONENT in
 		;;
 	upf)
 		cp /mnt/upf.yaml /open5gs/install/etc/open5gs
+		sed -i "s|TUN_SUBNET_IV|$TUN_SUBNET_IV|g" /open5gs/install/etc/open5gs/upf.yaml
+		sed -i "s|TUN_SUBNET_VI|$TUN_SUBNET_VI|g" /open5gs/install/etc/open5gs/upf.yaml
+		/mnt/upf_create_tun.sh
 		/open5gs/install/bin/open5gs-upfd
+		#bash
 		;;
 	pcrf)
 		cp /mnt/pcrf.yaml /open5gs/install/etc/open5gs

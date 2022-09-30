@@ -105,6 +105,11 @@ services:
         open5gs_upf:
                 image: open5gs_docker
                 container_name: open5gs_upf
+                cap_add:
+                        - NET_ADMIN
+                privileged: true
+                sysctls:
+                        - net.ipv4.ip_forward=1
                 tty: true
                 stdin_open: true
                 volumes:
