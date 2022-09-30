@@ -19,7 +19,7 @@
 #    domain: core,sbi,ausf,event,tlv,mem,sock
 #
 logger:
-    file: /var/log/open5gs/ausf.log
+    file: /open5gs/install/var/log/open5gs/ausf.log
 #
 # ausf:
 #
@@ -120,7 +120,7 @@ logger:
 #
 ausf:
     sbi:
-      - addr: 127.0.0.11
+      - addr: 0.0.0.0
         port: 7777
 
 #
@@ -164,7 +164,7 @@ ausf:
 nrf:
     sbi:
       - addr:
-          - 127.0.0.10
+          - NRF_IP
           - ::1
         port: 7777
 

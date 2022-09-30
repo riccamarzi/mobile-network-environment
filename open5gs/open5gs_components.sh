@@ -57,4 +57,9 @@ case $OPEN5GS_COMPONENT in
 		cp /mnt/nrf.yaml /open5gs/install/etc/open5gs
 		/open5gs/install/bin/open5gs-nrfd
 		;;
+	ausf)
+		cp /mnt/ausf.yaml /open5gs/install/etc/open5gs
+		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/ausf.yaml
+		/open5gs/install/bin/open5gs-ausfd
+		;;
 esac
