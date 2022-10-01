@@ -90,4 +90,6 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/MONGO_IP/$MONGO_IP/g" /open5gs/install/etc/open5gs/udr.yaml
 		/open5gs/install/bin/open5gs-udrd
 		;;
+	webui)
+		/mnt/webui_start.sh
 esac

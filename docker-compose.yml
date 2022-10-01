@@ -1,10 +1,10 @@
 version: '3.9'
 services:
         mongo:
-                image: mongo:latest
+                image: mongo:4
                 container_name: mongo
                 healthcheck:
-                        test: ["CMD", "mongosh", "mongodb://127.0.0.1"]
+                        test: ["CMD", "mongo", "mongodb://127.0.0.1"]
                         interval: 5s
                         timeout: 5s       
                 env_file:
@@ -255,6 +255,24 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_UDR_IP}
+        open5gs_webui:
+                image: open5gs_docker
+                container_name: open5gs_webui
+                expose:
+                        - "3000/tcp"
+                ports:
+                        - "3000:3000/tcp"
+                volumes: 
+                        - ./open5gs/webui:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=webui
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_WEBUI_IP}
         ############## END OPEN5GS ###############
         ############## KAMAILIO ##################
         pcscf:
