@@ -413,12 +413,66 @@ services:
                 volumes: 
                         - ./openimscore/ser_ims/pcscf:/mnt
                 image: openimscore_docker
+                depends_on:
+                        openims_mysql:
+                                condition: service_healthy
                 tty: true
                 stdin_open: true
                 container_name: openims_pcscf
+                env_file:
+                        - .env
                 networks:
                         appnet:
                                 ipv4_address: ${OPENIMS_PCSCF_IP}
+        openims_icscf:
+                environment:
+                        - OPENIMS_COMPONENT=icscf
+                volumes: 
+                        - ./openimscore/ser_ims/icscf:/mnt
+                image: openimscore_docker
+                tty: true
+                stdin_open: true
+                depends_on: 
+                        - openims_pcscf
+                env_file:
+                        - .env
+                container_name: openims_icscf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_ICSCF_IP}
+        openims_scscf:
+                environment:
+                        - OPENIMS_COMPONENT=scscf
+                volumes: 
+                        - ./openimscore/ser_ims/scscf:/mnt
+                image: openimscore_docker
+                tty: true
+                stdin_open: true
+                container_name: openims_scscf
+                env_file:
+                        - .env
+                depends_on: 
+                        - openims_pcscf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_SCSCF_IP}
+        openims_mysql: 
+                env_file:
+                        - .env
+                environment:
+                        - MYSQL_ROOT_PASSWORD=${OPENIMS_MYSQL_PWD}
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_MYSQL_IP}
+                expose:
+                        - "3306/tcp"
+                image: mysql:5.7
+                container_name: openims_mysql
+                healthcheck:
+                        test: ["CMD", "mysql", "-u", "root", "-proot"]
+                        timeout: 10s
+                        interval: 10s
+
         ############ END OPENIMSCORE ###########
         dns:
                 networks:
