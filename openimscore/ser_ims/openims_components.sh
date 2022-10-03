@@ -12,7 +12,9 @@ case $OPENIMS_COMPONENT in
 	icscf)
 		cp /opt/OpenIMSCore/ser_ims/cfg/icscf.sh /opt/OpenIMSCore
 		cp /mnt/icscf.* /opt/OpenIMSCore
-		mysql -u root -p$OPENIMS_MYSQL_PWD -h $OPENIMS_MYSQL_IP < /opt/OpenIMSCore/ser_ims/cfg/icscf.sql
+		cp /mnt/icscf.sql /opt/OpenIMSCore/ser_ims/cfg
+		sed -i "s/MYSQL_IP/$OPENIMS_MYSQL_IP/g" /opt/OpenIMSCore/icscf.cfg
+		mysql -u root -p$OPENIMS_MYSQL_PWD -h $OPENIMS_MYSQL_IP < /opt/OpenIMSCore/icscf.sql
 		/opt/OpenIMSCore/icscf.sh
 		;;
 esac

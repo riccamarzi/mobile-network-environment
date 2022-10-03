@@ -1,9 +1,8 @@
 FROM scratch
 ADD ubuntu-bionic-oci-amd64-root.tar.gz /
 COPY modules.lst .
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive TZ="Europe/Rome" apt install -y tzdata
-RUN apt install -y iputils-ping tcpdump screen make libssl-dev ipsec-tools vim iproute2 mysql-server ntp ntpdate git-core dkms gcc flex bison libmysqlclient-dev libcurl4-openssl-dev libxml2-dev libpcre3-dev bash-completion g++ autoconf rtpproxy libmnl-dev libsctp-dev libradcli-dev libradcli4
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update && apt install -y iputils-ping tcpdump screen make libssl-dev ipsec-tools vim iproute2 mysql-server ntp ntpdate git-core dkms gcc flex bison libmysqlclient-dev libcurl4-openssl-dev libxml2-dev libpcre3-dev bash-completion g++ autoconf rtpproxy libmnl-dev libsctp-dev libradcli-dev libradcli4
 RUN mkdir -p /usr/local/src
 WORKDIR /usr/local/src
 RUN git clone https://github.com/herlesupreeth/kamailio 

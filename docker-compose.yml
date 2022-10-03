@@ -442,7 +442,11 @@ services:
                         - "5060/udp"
                 stdin_open: true
                 depends_on: 
-                        - openims_pcscf
+                        openims_mysql:
+                                condition: service_healthy
+                        openims_pcscf:
+                                condition: service_started
+
                 env_file:
                         - .env
                 container_name: openims_icscf
