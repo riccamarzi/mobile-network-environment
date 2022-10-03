@@ -38,6 +38,7 @@ services:
                                         - hss
                                         - hss.ims.mnc001.mcc001.3gppnetwork.org
                                         - hss.epc.mnc001.mcc001.3gppnetwork.org
+                                        - hss.open-ims.test
         open5gs_mme:
                 image: open5gs_docker
                 container_name: open5gs_mme
@@ -413,6 +414,9 @@ services:
                 volumes: 
                         - ./openimscore/ser_ims/pcscf:/mnt
                 image: openimscore_docker
+                expose:
+                        - "4060/tcp"
+                        - "4060/udp"
                 depends_on:
                         openims_mysql:
                                 condition: service_healthy
@@ -424,6 +428,8 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPENIMS_PCSCF_IP}
+                                aliases:
+                                        - pcscf.open-ims.test
         openims_icscf:
                 environment:
                         - OPENIMS_COMPONENT=icscf
@@ -431,6 +437,9 @@ services:
                         - ./openimscore/ser_ims/icscf:/mnt
                 image: openimscore_docker
                 tty: true
+                expose:
+                        - "5060/tcp"
+                        - "5060/udp"
                 stdin_open: true
                 depends_on: 
                         - openims_pcscf
@@ -440,6 +449,8 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPENIMS_ICSCF_IP}
+                                aliases:
+                                        - icscf.open-ims.test
         openims_scscf:
                 environment:
                         - OPENIMS_COMPONENT=scscf
@@ -448,6 +459,9 @@ services:
                 image: openimscore_docker
                 tty: true
                 stdin_open: true
+                expose:
+                        - "6060/tcp"
+                        - "6060/udp"
                 container_name: openims_scscf
                 env_file:
                         - .env
@@ -456,6 +470,8 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPENIMS_SCSCF_IP}
+                                aliases:
+                                        - scscf.open-ims.test
         openims_mysql: 
                 env_file:
                         - .env
