@@ -273,6 +273,26 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_WEBUI_IP}
+        open5gs_fhoss:
+                build: ./open5gs/fhoss
+                image: open5gs_fhoss_image
+                expose: 
+                        - "8080/tcp"
+                ports:
+                        - "8080:8080/tcp"
+                depends_on:
+                        mysql:
+                                condition: service_healthy
+                tty: true
+                stdin_open: true
+                container_name: open5gs_fhoss
+                volumes:
+                        - ./open5gs/fhoss:/mnt
+                env_file:
+                        - .env
+                networks:
+                        appnet: 
+                                ipv4_address: ${OPEN5GS_FHOSS_IP}
         ############## END OPEN5GS ###############
         ############## KAMAILIO ##################
         pcscf:
