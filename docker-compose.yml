@@ -405,6 +405,21 @@ services:
                 volumes: 
                         - ./rtpengine:/mnt
         ############ END KAMAILIO ##############
+        ############ OPENIMSCORE ###############
+        openims_pcscf:
+                build: ./openimscore/ser_ims
+                environment:
+                        - OPENIMS_COMPONENT=pcscf
+                volumes: 
+                        - ./openimscore/ser_ims/pcscf:/mnt
+                image: openimscore_docker
+                tty: true
+                stdin_open: true
+                container_name: openims_pcscf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_PCSCF_IP}
+        ############ END OPENIMSCORE ###########
         dns:
                 networks:
                         appnet:
