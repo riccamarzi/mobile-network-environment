@@ -1,0 +1,5 @@
+zone "ims.mnc001.mcc001.3gppnetwork.org" {
+	file "/etc/bind/open-ims.test";
+	type master;
+};
+

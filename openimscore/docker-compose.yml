@@ -1,0 +1,196 @@
+services:
+        openims_pcscf:
+                build: ./ser_ims
+                environment:
+                        - OPENIMS_COMPONENT=pcscf
+                volumes: 
+                        - ./ser_ims/pcscf:/mnt
+                image: openimscore_docker
+                expose:
+                        - "4060/tcp"
+                        - "4060/udp"
+                depends_on:
+                        openims_mysql:
+                                condition: service_healthy
+                tty: true
+                stdin_open: true
+                container_name: openims_pcscf
+                env_file:
+                        - .env
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_PCSCF_IP}
+                                aliases:
+                                        - pcscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - _sip._udp.pcscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - _sip._tcp.pcscf.ims.mnc001.mcc001.3gppnetwork.org
+        openims_icscf:
+                environment:
+                        - OPENIMS_COMPONENT=icscf
+                volumes: 
+                        - ./ser_ims/icscf:/mnt
+                image: openimscore_docker
+                tty: true
+                expose:
+                        - "5060/tcp"
+                        - "5060/udp"
+                stdin_open: true
+                depends_on: 
+                        openims_mysql:
+                                condition: service_healthy
+                        openims_pcscf:
+                                condition: service_started
+
+                env_file:
+                        - .env
+                container_name: openims_icscf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_ICSCF_IP}
+                                aliases:
+                                        - icscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - _sip._udp.icscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - _sip._tcp.icscf.ims.mnc001.mcc001.3gppnetwork.org
+        openims_scscf:
+                environment:
+                        - OPENIMS_COMPONENT=scscf
+                volumes: 
+                        - ./ser_ims/scscf:/mnt
+                image: openimscore_docker
+                tty: true
+                stdin_open: true
+                expose:
+                        - "6060/tcp"
+                        - "6060/udp"
+                container_name: openims_scscf
+                env_file:
+                        - .env
+                depends_on: 
+                        - openims_pcscf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_SCSCF_IP}
+                                aliases:
+                                        - scscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - _sip._udp.scscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - _sip._tcp.scscf.ims.mnc001.mcc001.3gppnetwork.org
+        openims_ecscf:
+                environment:
+                        - OPENIMS_COMPONENT=ecscf
+                volumes:
+                        - ./ser_ims/ecscf:/mnt
+                image: openimscore_docker
+                tty: true
+                stdin_open: true
+                expose: 
+                        - "7060/tcp"
+                        - "7060/udp"
+                container_name: openims_ecscf
+                env_file:
+                        - .env
+                depends_on: 
+                        - openims_pcscf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_ECSCF_IP}
+                                aliases:
+                                        - ecscf.ims.mnc001.mcc001.3gppnetwork.org
+        openims_lrf:
+                environment:
+                        - OPENIMS_COMPONENT=lrf
+                volumes:
+                        - ./ser_ims/lrf:/mnt
+                image: openimscore_docker
+                container_name: openims_lrf
+                expose: 
+                        - "8060/tcp"
+                        - "8060/udp"
+                env_file:
+                        - .env
+                depends_on:
+                        - openims_pcscf
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_LRF_IP}
+                                aliases:
+                                        - lrf.ims.mnc001.mcc001.3gppnetwork.org
+        openims_sipp:
+                environment:
+                        - OPENIMS_COMPONENT=sipp
+                volumes:
+                        - ./ser_ims/sipp:/mnt
+                image: openimscore_docker
+                container_name: openims_sipp
+                expose:
+                        - "3062/udp"
+                        - "3061/udp"
+                env_file:
+                        - .env
+                depends_on: 
+                        - openims_pcscf
+                        - openims_fhoss
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_SIPP_IP}
+                                aliases:
+                                        - sipp.ims.mnc001.mcc001.3gppnetwork.org
+                tty: true
+                stdin_open: true
+
+        openims_mysql:
+                env_file:
+                        - .env
+                environment:
+                        - MYSQL_ROOT_PASSWORD=${OPENIMS_MYSQL_PWD}
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_MYSQL_IP}
+                expose:
+                        - "3306/tcp"
+                image: mysql:5.7
+                container_name: openims_mysql
+                healthcheck:
+                        test: ["CMD", "mysql", "-u", "root", "-proot"]
+                        timeout: 5s
+                        interval: 5s
+        openims_fhoss:
+                env_file:
+                        - .env
+                build: ./fhoss
+                image: openimscore_fhoss_docker
+                tty: true
+                stdin_open: true
+                container_name: openims_fhoss
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_FHOSS_IP}
+                                aliases:
+                                        - hss.ims.mnc001.mcc001.3gppnetwork.org
+                volumes:
+                        - ./fhoss:/mnt
+                expose:
+                        - "8080/tcp"
+                ports:
+                        - "8080:8080/tcp"
+                depends_on:
+                        openims_mysql:
+                                condition: service_healthy
+        openims_dns:
+                env_file:
+                        - .env
+                build: ./dns
+                container_name: dns
+                expose:
+                        - "53/udp"
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_DNS_IP}
+                volumes: 
+                        - ./dns/dns_conf:/mnt
+
+networks:
+        appnet:
+                #name: open5gs_appnet
+                ipam:
+                        config:
+                                - subnet: ${NETWORK_SUBNET}

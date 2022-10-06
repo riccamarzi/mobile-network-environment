@@ -44,7 +44,6 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s|TUN_SUBNET_VI|$TUN_SUBNET_VI|g" /open5gs/install/etc/open5gs/upf.yaml
 		/mnt/upf_create_tun.sh
 		/open5gs/install/bin/open5gs-upfd
-		#bash
 		;;
 	pcrf)
 		cp /mnt/pcrf.yaml /open5gs/install/etc/open5gs
