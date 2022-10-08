@@ -98,9 +98,9 @@ logger:
 #
 sgwu:
     pfcp:
-      - addr: 0.0.0.0
+      - addr: SGWU_IP
     gtpu:
-      - addr: 0.0.0.0
+      - addr: SGWU_IP
 
 #
 # sgwc:

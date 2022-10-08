@@ -245,9 +245,9 @@ logger:
 mme:
     freeDiameter: /open5gs/install/etc/freeDiameter/mme.conf
     s1ap:
-      - addr: 0.0.0.0
+      - addr: MME_IP
     gtpc:
-      - addr: 0.0.0.0
+      - addr: MME_IP
     gummei:
       plmn_id:
         mcc: 001

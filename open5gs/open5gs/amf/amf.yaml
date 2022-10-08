@@ -259,10 +259,10 @@ logger:
 #
 amf:
     sbi:
-      - addr: 0.0.0.0
+      - addr: AMF_IP
         port: 7777
     ngap:
-      - addr: 0.0.0.0
+      - addr: AMF_IP
     guami:
       - plmn_id:
           mcc: 001

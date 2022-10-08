@@ -122,7 +122,7 @@ logger:
 #
 bsf:
     sbi:
-      - addr: 0.0.0.0
+      - addr: BSF_IP
         port: 7777
 
 #

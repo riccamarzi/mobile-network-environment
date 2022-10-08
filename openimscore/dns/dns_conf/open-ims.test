@@ -12,7 +12,7 @@ $TTL 1W
 ns 								1D IN A         127.0.0.1
 
 pcscf 							1D IN A			PCSCF_IP
-ims.mnc001.mcc001.3gppnetwork.org. 			1D IN A 		127.0.0.1
+ims.mnc001.mcc001.3gppnetwork.org.			1D IN A 		SIPP_IP
 
 icscf							1D IN A 		ICSCF_IP
 _sip							1D SRV 0 0 5060 icscf

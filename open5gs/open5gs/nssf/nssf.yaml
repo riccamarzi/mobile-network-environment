@@ -170,7 +170,7 @@ logger:
 #
 nssf:
     sbi:
-      - addr: 0.0.0.0
+      - addr: NSSF_IP
         port: 7777
     nsi:
       - addr: ::1

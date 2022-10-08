@@ -67,9 +67,9 @@ logger:
 #
 sgwc:
     gtpc:
-      - addr: 0.0.0.0
+      - addr: SGWC_IP
     pfcp:
-      - addr: 0.0.0.0
+      - addr: SGWC_IP
 
 #
 # sgwu:

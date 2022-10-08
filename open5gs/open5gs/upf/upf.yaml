@@ -166,9 +166,9 @@ logger:
 #
 upf:
     pfcp:
-      - addr: 0.0.0.0
+      - addr: UPF_IP
     gtpu:
-      - addr: 0.0.0.0
+      - addr: UPF_IP
     subnet:
       - addr: TUN_SUBNET_IV
       - addr: TUN_SUBNET_VI

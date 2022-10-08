@@ -129,7 +129,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `impi` WRITE;
 /*!40000 ALTER TABLE `impi` DISABLE KEYS */;
-INSERT INTO `impi` VALUES (4,1,'alice@ims.mnc001.mcc001.3gppnetwork.org','alice',127,1,'\0\0','\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','','','','',0,3600,1),(2,2,'bob@ims.mnc001.mcc001.3gppnetwork.org','bob',255,1,'\0\0','\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','','','','',0,3600,1);
+INSERT INTO `impi` VALUES (4,1,'alice@ims.mnc001.mcc001.3gppnetwork.org','alice',255,1,'\0\0','\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','','000000000507','','',0,3600,1),(2,2,'bob@ims.mnc001.mcc001.3gppnetwork.org','bob',255,1,'\0\0','\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','','0000000001cd','','',0,3600,1);
 /*!40000 ALTER TABLE `impi` ENABLE KEYS */;
 UNLOCK TABLES;
 

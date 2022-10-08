@@ -129,7 +129,7 @@ logger:
 #
 pcf:
     sbi:
-      - addr: 0.0.0.0
+      - addr: PCF_IP
         port: 7777
 
 #

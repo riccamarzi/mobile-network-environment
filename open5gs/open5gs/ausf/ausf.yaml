@@ -120,7 +120,7 @@ logger:
 #
 ausf:
     sbi:
-      - addr: 0.0.0.0
+      - addr: AUSF_IP
         port: 7777
 
 #

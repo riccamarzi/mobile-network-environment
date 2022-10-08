@@ -412,14 +412,14 @@ logger:
 
 smf:
     sbi:
-      - addr: 0.0.0.0
+      - addr: SMF_IP
         port: 7777
     pfcp:
-      - addr: 0.0.0.0
+      - addr: SMF_IP
     gtpc:
-      - addr: 0.0.0.0
+      - addr: SMF_IP
     gtpu:
-      - addr: 0.0.0.0
+      - addr: SMF_IP
     subnet:
       - addr: 10.45.0.1/24
       - addr: 2001:db8:cafe::1/48
