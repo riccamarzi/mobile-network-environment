@@ -6,6 +6,10 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/MONGO_IP/$MONGO_IP/g" /open5gs/install/etc/open5gs/hss.yaml
 		sed -i "s/MME_IP/$OPEN5GS_MME_IP/g" /open5gs/install/etc/freeDiameter/hss.conf
 		sed -i "s/HSS_IP/$HSS_IP/g" /open5gs/install/etc/freeDiameter/hss.conf
+		/mnt/generate_certificates.sh
+		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/hss.conf
+		sed -i "s/ICSCF_IP/$KAMAILIO_ICSCF_IP/g" /open5gs/install/etc/freeDiameter/hss.conf
+		sed -i "s/SCSCF_IP/$KAMAILIO_SCSCF_IP/g" /open5gs/install/etc/freeDiameter/hss.conf
 		/open5gs/install/bin/open5gs-hssd
 		;;	
 	mme)
@@ -16,6 +20,8 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/SGWC_IP/$OPEN5GS_SGWC_IP/g" /open5gs/install/etc/open5gs/mme.yaml
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/open5gs/mme.yaml
 		sed -i "s/MME_IP/$OPEN5GS_MME_IP/g" /open5gs/install/etc/open5gs/mme.yaml
+		/mnt/generate_certificates.sh
+		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/mme.conf
 		/open5gs/install/bin/open5gs-mmed
 		;;
 	sgwc)
@@ -38,6 +44,8 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		sed -i "s/UPF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
+		/mnt/generate_certificates.sh
+		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/smf.conf
 		/open5gs/install/bin/open5gs-smfd
 		;;
 	amf)
@@ -62,6 +70,8 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		sed -i "s/PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		sed -i "s/PCRF_IP/$OPEN5GS_PCRF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
+		/mnt/generate_certificates.sh
+		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		/open5gs/install/bin/open5gs-pcrfd
 		;;
 	nrf)
