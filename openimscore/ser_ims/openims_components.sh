@@ -11,6 +11,7 @@ case $OPENIMS_COMPONENT in
 		cp /mnt/scscf.* /opt/OpenIMSCore
 		cp /mnt/resolv.conf /etc/resolv.conf
 		sed -i "s/SCSCF_IP/$OPENIMS_SCSCF_IP/g" /opt/OpenIMSCore/scscf.cfg
+		sed -i "s/PCSCF_IP/$OPENIMS_PCSCF_IP/g" /opt/OpenIMSCore/scscf.cfg
 		/opt/OpenIMSCore/scscf.sh
 		;;
 	icscf)
