@@ -103,6 +103,8 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_SMF_IP}
+                                aliases:
+                                        - smf.epc.mnc001.mcc001.3gppnetwork.org
         open5gs_upf:
                 image: open5gs_docker
                 container_name: open5gs_upf
@@ -275,21 +277,21 @@ services:
                         appnet:
                                 ipv4_address: ${OPEN5GS_WEBUI_IP}
         ############## END OPEN5GS ###############
-        dns:
-                networks:
-                        appnet:
-                                ipv4_address: ${DNS_IP}
-                                aliases:
-                                        - dns
-                tty: true
-                stdin_open: true
-                build: ./dns
-                env_file:
-                        - .env
-                container_name: dns
-                volumes: 
-                        - ./dns/dns_conf:/mnt
-
+#        dns:
+#                networks:
+#                        appnet:
+#                                ipv4_address: ${DNS_IP}
+#                                aliases:
+#                                        - dns
+#                tty: true
+#                stdin_open: true
+#                build: ./dns
+#                env_file:
+#                        - .env
+#                container_name: dns
+#                volumes: 
+#                        - ./dns/dns_conf:/mnt
+#
 networks:
         appnet:
                 #driver: bridge
@@ -297,3 +299,7 @@ networks:
                 #driver: default
                         config:
                                 - subnet: ${NETWORK_SUBNET}
+        uenet:
+                ipam:
+                        config:
+                                - subnet: ${TUN_SUBNET_IV}

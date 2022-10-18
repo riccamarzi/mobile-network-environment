@@ -11,6 +11,8 @@ case $KAMAILIO_COMPONENT in
 		mysql -u root -h $KAMAILIO_MYSQL_IP -p$KAMAILIO_MYSQL_PWD scscf < /mnt/scscf_permission.sql 
 		mkdir -p /var/run/kamailio_scscf
 		cp -r /mnt/scscf_config /etc/kamailio_scscf
+		sed -i "s/SCSCF_IP/$KAMAILIO_SCSCF_IP/g" /etc/kamailio_scscf/scscf.*
+		sed -i "s/SCSCF_IP/$KAMAILIO_SCSCF_IP/g" /etc/kamailio_scscf/kamailio_scscf.cfg
 		sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /etc/kamailio_scscf/scscf.cfg
 		kamailio -f /etc/kamailio_scscf/kamailio_scscf.cfg -P /kamailio_scscf.pid -DD -E -e
 		;;
@@ -22,6 +24,8 @@ case $KAMAILIO_COMPONENT in
 		mysql -u root -h $KAMAILIO_MYSQL_IP -p$KAMAILIO_MYSQL_PWD icscf < /mnt/icscf_permission.sql
 		mkdir -p /var/run/kamailio_icscf
 		cp -r /mnt/icscf_config /etc/kamailio_icscf
+		sed -i "s/ICSCF_IP/$KAMAILIO_ICSCF_IP/g" /etc/kamailio_icscf/icscf.*
+		sed -i "s/ICSCF_IP/$KAMAILIO_ICSCF_IP/g" /etc/kamailio_icscf/kamailio_icscf.cfg
 		sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /etc/kamailio_icscf/icscf.cfg
 		kamailio -f /etc/kamailio_icscf/kamailio_icscf.cfg -P /kamailio_icscf.pid -DD -E -e
 		;;
@@ -35,6 +39,8 @@ case $KAMAILIO_COMPONENT in
 		mysql -u root -h $KAMAILIO_MYSQL_IP -p$KAMAILIO_MYSQL_PWD pcscf < /mnt/pcscf_permission.sql
 		mkdir -p /var/run/kamailio_pcscf
 		cp -r /mnt/pcscf_config /etc/kamailio_pcscf
+		sed -i "s/PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /etc/kamailio_pcscf/pcscf.*
+		sed -i "s/PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /etc/kamailio_pcscf/kamailio_pcscf.cfg
 		sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /etc/kamailio_pcscf/pcscf.cfg 
 		sed -i "s/KAMAILIO_RTP_IP/$KAMAILIO_RTP_IP/g" /etc/kamailio_pcscf/kamailio_pcscf.cfg
 		kamailio -f /etc/kamailio_pcscf/kamailio_pcscf.cfg -P /kamailio_pcscf.pid -DD -E -e

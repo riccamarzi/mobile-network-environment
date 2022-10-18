@@ -15,7 +15,7 @@ case $OPEN5GS_COMPONENT in
 	mme)
 		cp /mnt/mme.yaml /open5gs/install/etc/open5gs
 		cp /mnt/mme.conf /open5gs/install/etc/freeDiameter
-		sed -i "s/HSS_IP/$HSS_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
+		sed -i "s/HSS_IP/$KAMAILIO_FHOSS_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
 		sed -i "s/MME_IP/$OPEN5GS_MME_IP/g" /open5gs/install/etc/freeDiameter/mme.conf
 		sed -i "s/SGWC_IP/$OPEN5GS_SGWC_IP/g" /open5gs/install/etc/open5gs/mme.yaml
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/open5gs/mme.yaml
@@ -44,7 +44,9 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/NRF_IP/$OPEN5GS_NRF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		sed -i "s/UPF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
-		/mnt/generate_certificates.sh
+		sed -i "s/PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
+		sed -i "s/EPC_DOMAIN/$EPC_DOMAIN/g" /open5gs/install/etc/freeDiameter/smf.conf
+		/mnt/generate_certificates.sh $EPC_DOMAIN
 		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/smf.conf
 		/open5gs/install/bin/open5gs-smfd
 		;;
@@ -70,7 +72,8 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		sed -i "s/PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		sed -i "s/PCRF_IP/$OPEN5GS_PCRF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
-		/mnt/generate_certificates.sh
+		sed -i "s/EPC_DOMAIN/$EPC_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
+		/mnt/generate_certificates.sh $EPC_DOMAIN
 		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		/open5gs/install/bin/open5gs-pcrfd
 		;;
@@ -120,4 +123,5 @@ case $OPEN5GS_COMPONENT in
 		;;
 	webui)
 		/mnt/webui_start.sh
+		;;
 esac

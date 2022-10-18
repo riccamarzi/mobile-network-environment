@@ -126,9 +126,9 @@ services:
                         - "3061/udp"
                 env_file:
                         - .env
-                depends_on: 
-                        - openims_pcscf
-                        - openims_fhoss
+                          #depends_on: 
+                          #- openims_pcscf
+                          #- openims_fhoss
                 networks:
                         appnet:
                                 ipv4_address: ${OPENIMS_SIPP_IP}

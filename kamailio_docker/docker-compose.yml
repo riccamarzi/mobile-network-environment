@@ -1,18 +1,47 @@
 version: '3.9'
 services:
-#        mongo:
-#                image: mongo:4
-#                container_name: mongo
-#                healthcheck:
-#                        test: ["CMD", "mongo", "mongodb://127.0.0.1"]
-#                        interval: 5s
-#                        timeout: 5s       
-#                env_file:
-#                        - .env
-#                networks:
-#                        appnet:
-#                                ipv4_address: ${MONGO_IP}
         ############## KAMAILIO ##################
+        fhoss:
+                build: ./fhoss
+                image: kamailio_fhoss_docker
+                container_name: kamailio_fhoss
+                expose:
+                        - "8080/tcp"
+                        - "3868/tcp"
+                        - "3868/udp"
+                ports:
+                        - "8080:8080/tcp"
+                env_file: 
+                        - .env
+                volumes:
+                        - ./fhoss/fhoss_conf:/mnt
+                depends_on: 
+                        mysql:
+                                condition: service_healthy
+                networks:
+                        appnet:
+                                ipv4_address: ${KAMAILIO_FHOSS_IP}
+                                aliases: 
+                                        - hss
+                                        - kamailiohss.ims.mnc001.mcc001.3gppnetwork.org
+        sip:
+                build: ./sip
+                image: kamailio_sip_docker
+                tty: true
+                stdin_open: true
+                container_name: kamailio_sipp
+                cap_add:
+                        - NET_ADMIN
+                privileged: true
+                env_file:
+                        - .env
+                volumes: 
+                        - ./sip:/mnt
+                networks:
+                        appnet:
+                                ipv4_address: ${KAMAILIO_SIP_IP}
+                                #             uenet: 
+                                #ipv4_address: ${TUN_SIP_IP}
         pcscf:
                 build: ./kamailio_docker
                 image: kamailio_docker
@@ -141,3 +170,11 @@ services:
 networks:
         appnet:
                 name: open5gs_appnet
+                #ipam:
+                #        config:
+                #                - subnet: ${NETWORK_SUBNET}
+        uenet:
+                #name: open5gs_uenet
+                ipam:
+                        config:
+                                - subnet: ${TUN_SUBNET_IV}
