@@ -30,7 +30,9 @@ RUN mkdir build
 WORKDIR build
 RUN cmake ../
 RUN make -j `nproc`
-CMD bash
+ADD sip_startup.sh /
+RUN chmod +x /sip_startup.sh 
+CMD /sip_startup.sh
 #RUN wget https://dl.google.com/go/go1.17.linux-amd64.tar.gz
 #RUN tar -C /usr/local/ -xzf go1.17.linux-amd64.tar.gz
 #ENV PATH=$PATH:/usr/local/go/bin
