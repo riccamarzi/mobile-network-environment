@@ -59,9 +59,11 @@ case $OPEN5GS_COMPONENT in
 	upf)
 		cp /mnt/upf.yaml /open5gs/install/etc/open5gs
 		sed -i "s/UPF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/open5gs/upf.yaml
+		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/open5gs/upf.yaml
 		sed -i "s|TUN_SUBNET_IV|$TUN_SUBNET_IV|g" /open5gs/install/etc/open5gs/upf.yaml
 		sed -i "s|TUN_SUBNET_VI|$TUN_SUBNET_VI|g" /open5gs/install/etc/open5gs/upf.yaml
 		/mnt/upf_create_tun.sh
+		iptables -t nat -A POSTROUTING -s $TUN_SUBNET_IV ! -o ogstun -j MASQUERADE
 		/open5gs/install/bin/open5gs-upfd
 		#bash
 		;;

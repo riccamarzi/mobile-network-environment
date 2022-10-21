@@ -1,18 +1,23 @@
-#FROM icomputer7/ancient-ubuntu-docker:jaunty
+#FROM icomputer7/ancient-ubuntu-docker:jaunty as builder
+#ENV DEBIAN_FRONTEND=noninteractive
+#RUN apt-get update && apt-get install -y cmake pkg-config m4 libtool autoconf automake iputils-ping dh-make build-essential libncurses5-dev libncursesw5-dev openssl libssl-dev
+#ADD ./sipp-3.0.src /sipp-3.0.src
+#WORKDIR sipp-3.0.src
+#RUN make ossl
+#
 FROM ubuntu:focal
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y git iproute2 libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev cmake pkg-config m4 libtool autoconf automake iputils-ping dh-make build-essential libncurses5-dev libncursesw5-dev openssl libssl-dev
-ADD ./sipp-3.0.src /sipp-3.0.src
-WORKDIR sipp-3.0.src
-#RUN make ossl
-ENV PATH="${PATH}:/sipp-3.0.src"
+RUN apt update && apt install -y git vim libssl-dev pkg-config dh-autoreconf ncurses-dev lksctp-tools iproute2 build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev libtool libncurses5-dev libncursesw5-dev iputils-ping
 WORKDIR /
-#RUN git clone https://github.com/zeromq/libzmq.git
-ADD libzmq /libzmq
+RUN git clone https://github.com/SIPp/sipp.git
+WORKDIR sipp
+RUN cmake . -DUSE_SSL=1
+RUN make all -j `nproc`
+RUN git clone https://github.com/zeromq/libzmq.git
 WORKDIR libzmq
 RUN ./autogen.sh
 RUN ./configure
-RUN make
+RUN make -j `nproc`
 RUN make install 
 RUN ldconfig
 WORKDIR /
@@ -20,7 +25,7 @@ RUN git clone https://github.com/zeromq/czmq.git
 WORKDIR czmq
 RUN ./autogen.sh
 RUN ./configure
-RUN make 
+RUN make -j `nproc`
 RUN make install
 RUN ldconfig
 WORKDIR /

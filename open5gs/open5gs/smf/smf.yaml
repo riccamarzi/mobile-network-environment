@@ -421,7 +421,8 @@ smf:
     gtpu:
       - addr: SMF_IP
     subnet:
-      - addr: 10.45.0.1/24
+      - addr: 10.45.0.1/16
+        dnn: internet
       - addr: 2001:db8:cafe::1/48
     dns:
       - 8.8.8.8

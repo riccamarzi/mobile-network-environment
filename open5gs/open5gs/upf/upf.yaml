@@ -170,7 +170,9 @@ upf:
     gtpu:
       - addr: UPF_IP
     subnet:
-      - addr: TUN_SUBNET_IV
+      - addr: 10.45.0.1/16
+        dev: ogstun
+        dnn: internet
       - addr: TUN_SUBNET_VI
 
 #
@@ -184,6 +186,8 @@ upf:
 #      addr: 127.0.0.4
 #
 smf:
+    pfcp:
+        addr: SMF_IP
 
 #
 # parameter:
