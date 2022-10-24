@@ -277,21 +277,6 @@ services:
                         appnet:
                                 ipv4_address: ${OPEN5GS_WEBUI_IP}
         ############## END OPEN5GS ###############
-#        dns:
-#                networks:
-#                        appnet:
-#                                ipv4_address: ${DNS_IP}
-#                                aliases:
-#                                        - dns
-#                tty: true
-#                stdin_open: true
-#                build: ./dns
-#                env_file:
-#                        - .env
-#                container_name: dns
-#                volumes: 
-#                        - ./dns/dns_conf:/mnt
-#
 networks:
         appnet:
                 #driver: bridge

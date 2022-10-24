@@ -40,8 +40,6 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${KAMAILIO_SIP_IP}
-                                #             uenet: 
-                                #ipv4_address: ${TUN_SIP_IP}
         pcscf:
                 build: ./kamailio_docker
                 image: kamailio_docker
@@ -173,8 +171,3 @@ networks:
                 #ipam:
                 #        config:
                 #                - subnet: ${NETWORK_SUBNET}
-        uenet:
-                #name: open5gs_uenet
-                ipam:
-                        config:
-                                - subnet: ${TUN_SUBNET_IV}
