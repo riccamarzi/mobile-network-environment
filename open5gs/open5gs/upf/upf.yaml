@@ -173,6 +173,9 @@ upf:
       - addr: 10.45.0.1/16
         dev: ogstun
         dnn: internet
+      - addr: 10.46.0.1/16
+        dev: ogstun2
+        dnn: ims
       - addr: TUN_SUBNET_VI
 
 #

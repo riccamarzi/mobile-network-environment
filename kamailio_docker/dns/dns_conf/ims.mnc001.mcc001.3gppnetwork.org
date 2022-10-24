@@ -11,12 +11,14 @@ $TTL 1W
 ns                      1D IN A         10.1.1.254
 
 pcscf                   1D IN A         KAMAILIO_PCSCF_IP
-_sip._udp.pcscf         1D SRV 0 0 4060 pcscf
-_sip._tcp.pcscf         1D SRV 0 0 4060 pcscf
+_sip._udp.pcscf         1D SRV 0 0 5060 pcscf
+_sip._tcp.pcscf         1D SRV 0 0 5060 pcscf
 
 icscf                   1D IN A         KAMAILIO_ICSCF_IP
-_sip._udp               1D SRV 0 0 5060 icscf
-_sip._tcp               1D SRV 0 0 5060 icscf
+_sip._udp               1D SRV 0 0 4060 icscf
+_sip._tcp               1D SRV 0 0 4060 icscf
+
+ims.mnc001.mcc001.3gppnetwork.org. IN A 10.45.0.2
 
 scscf                   1D IN A         KAMAILIO_SCSCF_IP
 _sip._udp.scscf         1D SRV 0 0 6060 scscf

@@ -1,0 +1,14 @@
+$ORIGIN epc.mnc001.mcc001.3gppnetwork.org.
+$TTL 1W
+@                       1D IN SOA       localhost. root.localhost. (
+                                        1               ; serial
+                                        3H              ; refresh
+                                        15M             ; retry
+                                        1W              ; expiry
+                                        1D )            ; minimum
+
+                        1D IN NS        ns
+ns                      1D IN A         10.1.1.254
+
+pcrf                    1D IN A         OPEN5GS_PCRF_IP
+smf			1D IN A         OPEN5GS_SMF_IP

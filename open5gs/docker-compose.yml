@@ -284,7 +284,5 @@ networks:
                 #driver: default
                         config:
                                 - subnet: ${NETWORK_SUBNET}
-        uenet:
-                ipam:
-                        config:
-                                - subnet: ${TUN_SUBNET_IV}
+                driver_opts:
+                        com.docker.network.bridge.name: appnet_iface

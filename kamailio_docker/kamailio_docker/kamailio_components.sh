@@ -14,6 +14,7 @@ case $KAMAILIO_COMPONENT in
 		sed -i "s/SCSCF_IP/$KAMAILIO_SCSCF_IP/g" /etc/kamailio_scscf/scscf.*
 		sed -i "s/SCSCF_IP/$KAMAILIO_SCSCF_IP/g" /etc/kamailio_scscf/kamailio_scscf.cfg
 		sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /etc/kamailio_scscf/scscf.cfg
+		cp /mnt/scscf_config/resolv.conf /etc
 		kamailio -f /etc/kamailio_scscf/kamailio_scscf.cfg -P /kamailio_scscf.pid -DD -E -e
 		;;
 	icscf)
@@ -27,6 +28,7 @@ case $KAMAILIO_COMPONENT in
 		sed -i "s/ICSCF_IP/$KAMAILIO_ICSCF_IP/g" /etc/kamailio_icscf/icscf.*
 		sed -i "s/ICSCF_IP/$KAMAILIO_ICSCF_IP/g" /etc/kamailio_icscf/kamailio_icscf.cfg
 		sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /etc/kamailio_icscf/icscf.cfg
+		cp /mnt/icscf_config/resolv.conf /etc
 		kamailio -f /etc/kamailio_icscf/kamailio_icscf.cfg -P /kamailio_icscf.pid -DD -E -e
 		;;
 	pcscf)
@@ -43,6 +45,7 @@ case $KAMAILIO_COMPONENT in
 		sed -i "s/PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /etc/kamailio_pcscf/kamailio_pcscf.cfg
 		sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /etc/kamailio_pcscf/pcscf.cfg 
 		sed -i "s/KAMAILIO_RTP_IP/$KAMAILIO_RTP_IP/g" /etc/kamailio_pcscf/kamailio_pcscf.cfg
+		cp /mnt/pcscf_config/resolv.conf /etc
 		kamailio -f /etc/kamailio_pcscf/kamailio_pcscf.cfg -P /kamailio_pcscf.pid -DD -E -e
 		;;
 esac

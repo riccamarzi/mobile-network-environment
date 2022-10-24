@@ -63,7 +63,10 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s|TUN_SUBNET_IV|$TUN_SUBNET_IV|g" /open5gs/install/etc/open5gs/upf.yaml
 		sed -i "s|TUN_SUBNET_VI|$TUN_SUBNET_VI|g" /open5gs/install/etc/open5gs/upf.yaml
 		/mnt/upf_create_tun.sh
-		iptables -t nat -A POSTROUTING -s $TUN_SUBNET_IV ! -o ogstun -j MASQUERADE
+		iptables -t nat -A POSTROUTING -s 10.45.0.1/16 ! -o ogstun -j MASQUERADE
+		iptables -I INPUT -i ogstun -j ACCEPT
+		iptables -t nat -A POSTROUTING -s 10.46.0.0/16 ! -o ogstun2 -j MASQUERADE
+		iptables -I INPUT -i ogstun2 -j ACCEPT
 		/open5gs/install/bin/open5gs-upfd
 		#bash
 		;;

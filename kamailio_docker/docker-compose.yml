@@ -30,6 +30,9 @@ services:
                 tty: true
                 stdin_open: true
                 container_name: kamailio_sipp
+                expose:
+                        - "3061/udp"
+                        - "3062/udp"
                 cap_add:
                         - NET_ADMIN
                 privileged: true
@@ -44,6 +47,9 @@ services:
                 build: ./kamailio_docker
                 image: kamailio_docker
                 container_name: kamailio_pcscf
+                cap_add:
+                        - NET_ADMIN
+                privileged: true
                 tty: true 
                 stdin_open: true
                 volumes:
