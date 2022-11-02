@@ -20,5 +20,6 @@ ENV CLASSPATH=/usr/lib/jvm/jdk1.7.0_80/jre/lib
 ENV ANT_HOME=/usr/local/apache-ant-1.9.14
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
+RUN sed -i '197,199d' /opt/OpenIMSCore/FHoSS/src/de/fhg/fokus/hss/web/form/IMPI_Form.java
 RUN ant compile deploy | tee ant_compile_deploy.txt
 CMD /mnt/fhoss_start.sh

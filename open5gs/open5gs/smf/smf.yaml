@@ -424,6 +424,8 @@ smf:
       - addr: 10.45.0.1/16
         dnn: internet
       - addr: 2001:db8:cafe::1/48
+      - addr: 10.46.0.1/16
+        dnn: ims
     dns:
       - 8.8.8.8
       - 8.8.4.4
