@@ -10,6 +10,7 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/hss.conf
 		sed -i "s/ICSCF_IP/$KAMAILIO_ICSCF_IP/g" /open5gs/install/etc/freeDiameter/hss.conf
 		sed -i "s/SCSCF_IP/$KAMAILIO_SCSCF_IP/g" /open5gs/install/etc/freeDiameter/hss.conf
+		python3 /mnt/hss_sub.py
 		/open5gs/install/bin/open5gs-hssd
 		;;	
 	mme)

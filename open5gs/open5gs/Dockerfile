@@ -15,4 +15,5 @@ RUN ninja install
 WORKDIR ..
 ADD open5gs_components.sh /
 RUN chmod +x /open5gs_components.sh
+RUN pip3 install pymongo
 CMD /open5gs_components.sh
