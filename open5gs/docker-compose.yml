@@ -108,6 +108,9 @@ services:
         open5gs_upf:
                 image: open5gs_docker
                 container_name: open5gs_upf
+                expose:
+                        - "3061/udp"
+                        - "3062/udp"
                 cap_add:
                         - NET_ADMIN
                 privileged: true
