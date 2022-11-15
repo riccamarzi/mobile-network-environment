@@ -204,10 +204,10 @@ nssf:
 #        - 127.0.0.10
 #        - fd69:f21d:873c:fa::1
 #
-nrf:
+scp:
     sbi:
       - addr:
-          - NRF_IP
+          - SCP_IP
           - ::1
         port: 7777
 

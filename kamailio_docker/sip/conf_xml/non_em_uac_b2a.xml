@@ -13,7 +13,7 @@ P-Preferred-Identity: <sip:bob@ims.mnc001.mcc001.3gppnetwork.org>
 Privacy: none
 P-Access-Network-Info: 3GPP-UTRAN-TDD;utran-cell-id-3gpp=C359A3913B20E
 From: <sip:bob@ims.mnc001.mcc001.3gppnetwork.org>;tag=[call_number]
-To: <alice@ims.mnc001.mcc001.3gppnetwork.org>
+To: <sip:alice@ims.mnc001.mcc001.3gppnetwork.org>
 Call-ID: [call_id]
 CSeq: 10 INVITE
 Supported: 100rel, geolocation

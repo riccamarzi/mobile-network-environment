@@ -101,6 +101,7 @@ sgwu:
       - addr: SGWU_IP
     gtpu:
       - addr: SGWU_IP
+        #advertise: 10.1.1.1
 
 #
 # sgwc:

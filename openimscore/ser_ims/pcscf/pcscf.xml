@@ -10,13 +10,13 @@
 	Workers="4"
 	QueueLength="8"
 >
-	<Peer FQDN="clf.ims.mnc001.mcc001.3gppnetwork.org" Realm="ims.mnc001.mcc001.3gppnetwork.org" port="3868"/> 
+	<Peer FQDN="pcrf.ims.mnc001.mcc001.3gppnetwork.org" Realm="ims.mnc001.mcc001.3gppnetwork.org" port="3868"/> 
 
 	<Acceptor port="3867" bind="0.0.0.0"/>
 	
 	<Auth id="16777231" vendor="13019"/><!-- ETSI e2 -->
 
-	<DefaultRoute FQDN="clf.ims.mnc001.mcc001.3gppnetwork.org" metric="10"/>
+	<DefaultRoute FQDN="pcrf.ims.mnc001.mcc001.3gppnetwork.org" metric="10"/>
 	
 <!-- Realm Routing configuration - Uncomment and Edit!
 

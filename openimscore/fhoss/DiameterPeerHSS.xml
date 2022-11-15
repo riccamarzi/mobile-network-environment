@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- HSS Server config -->
 <DiameterPeer 
-	FQDN="hss.IMS_DOMAIN"
+	FQDN="openimshss.IMS_DOMAIN"
 	Realm="IMS_DOMAIN"
 	Vendor_Id="10415"
 	Product_Name="JavaDiameterPeer"

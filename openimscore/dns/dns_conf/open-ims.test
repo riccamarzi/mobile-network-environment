@@ -25,6 +25,9 @@ ims.mnc001.mcc001.3gppnetwork.org.					1D IN NAPTR 20 50 "s" "SIP+D2T" ""		_sip.
 scscf 							1D IN A 		SCSCF_IP
 
 hss 							1D IN A 		FHOSS_IP
+openimshss						1D IN A			FHOSS_IP
+
+pcrf 							1d IN A 		10.1.1.15
 
 ue 							1D IN A 		10.45.0.5
 presence 						1D IN A 		10.45.0.5

@@ -1,4 +1,5 @@
 version: '3.9'
+
 services:
         ############## KAMAILIO ##################
         fhoss:
@@ -24,6 +25,17 @@ services:
                                 aliases: 
                                         - hss
                                         - kamailiohss.ims.mnc001.mcc001.3gppnetwork.org
+        srsran:
+                build: ./srsran
+                image: kamailio_srsran_docker
+                tty: true
+                stdin_open: true
+                container_name: kamailio_srsran
+                networks:
+                        appnet:
+                                ipv4_address: ${KAMAILIO_SRSRAN_IP}
+                env_file:
+                        - .env
         sip:
                 build: ./sip
                 image: kamailio_sip_docker

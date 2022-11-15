@@ -170,10 +170,10 @@ pcf:
 #          l_onoff: true
 #          l_linger: 10
 #
-nrf:
+scp:
     sbi:
       - addr:
-          - NRF_IP
+          - SCP_IP
           - ::1
         port: 7777
 

@@ -48,6 +48,10 @@ services:
                         - ./open5gs/mme:/mnt
                 depends_on:
                         - open5gs_hss
+                        - open5gs_sgwc
+                        - open5gs_sgwu
+                        - open5gs_smf
+                        - open5gs_upf
                 env_file:
                         - .env
                 environment:
@@ -63,7 +67,8 @@ services:
                 volumes:
                         - ./open5gs/sgwc:/mnt
                 depends_on:
-                        - open5gs_hss
+                        - open5gs_smf
+                        - open5gs_upf
                 env_file:
                         - .env
                 environment:
@@ -79,7 +84,8 @@ services:
                 volumes:
                         - ./open5gs/sgwu:/mnt
                 depends_on:
-                        - open5gs_hss
+                        - open5gs_smf
+                        - open5gs_upf
                 env_file:
                         - .env
                 environment:
@@ -95,7 +101,8 @@ services:
                 volumes:
                         - ./open5gs/smf:/mnt
                 depends_on:
-                        - open5gs_hss
+                        - open5gs_nrf
+                        - open5gs_scp
                 env_file:
                         - .env
                 environment:
@@ -108,9 +115,6 @@ services:
         open5gs_upf:
                 image: open5gs_docker
                 container_name: open5gs_upf
-                expose:
-                        - "3061/udp"
-                        - "3062/udp"
                 cap_add:
                         - NET_ADMIN
                 privileged: true
@@ -121,7 +125,9 @@ services:
                 volumes:
                         - ./open5gs/upf:/mnt
                 depends_on:
-                        - open5gs_hss
+                        - open5gs_nrf
+                        - open5gs_scp
+                        - open5gs_smf
                 env_file:
                         - .env
                 environment:
@@ -137,7 +143,15 @@ services:
                 volumes:
                         - ./open5gs/amf:/mnt
                 depends_on:
-                        - open5gs_hss
+                        - open5gs_smf
+                        - open5gs_nrf
+                        - open5gs_upf
+                        - open5gs_scp
+                        - open5gs_ausf
+                        - open5gs_udm
+                        - open5gs_udr
+                        - open5gs_pcf
+                        - open5gs_bsf
                 env_file:
                         - .env
                 environment:
@@ -166,6 +180,8 @@ services:
         open5gs_nrf:
                 image: open5gs_docker
                 container_name: open5gs_nrf
+                expose:
+                        - "7777/udp"
                 volumes: 
                         - ./open5gs/nrf:/mnt
                 depends_on:
@@ -177,6 +193,21 @@ services:
                 networks:
                         appnet:
                                 ipv4_address: ${OPEN5GS_NRF_IP}
+        open5gs_scp:
+                image: open5gs_docker
+                container_name: open5gs_scp
+                volumes:
+                        - ./open5gs/scp:/mnt
+                depends_on:
+                        - open5gs_hss
+                env_file:
+                        - .env
+                environment:
+                        - OPEN5GS_COMPONENT=scp
+                networks:
+                        appnet:
+                                ipv4_address: ${OPEN5GS_SCP_IP}
+
         open5gs_ausf:
                 image: open5gs_docker
                 container_name: open5gs_ausf

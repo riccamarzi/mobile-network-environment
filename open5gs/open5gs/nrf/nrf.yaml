@@ -91,6 +91,11 @@ nrf:
         - NRF_IP
       port: 7777
 
+scp:
+    sbi:
+      addr:
+        - SCP_IP
+      port: 7777
 #
 # parameter:
 #

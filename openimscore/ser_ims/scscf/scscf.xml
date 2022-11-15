@@ -10,7 +10,7 @@
 	Workers="4"
 	QueueLength="8"
 >
-	<Peer FQDN="hss.ims.mnc001.mcc001.3gppnetwork.org" Realm="ims.mnc001.mcc001.3gppnetwork.org" port="3868"/> 
+	<Peer FQDN="openimshss.ims.mnc001.mcc001.3gppnetwork.org" Realm="ims.mnc001.mcc001.3gppnetwork.org" port="3868"/> 
 
 	<Acceptor port="3870" bind="0.0.0.0"/>
 	
@@ -18,7 +18,7 @@
         <Auth id="16777216" vendor="4491"/><!-- CableLabs Cx -->
         <Auth id="16777216" vendor="13019"/><!-- ETSI/TISPAN Cx -->
                 
-	<DefaultRoute FQDN="hss.ims.mnc001.mcc001.3gppnetwork.org" metric="10"/>
+	<DefaultRoute FQDN="openimshss.ims.mnc001.mcc001.3gppnetwork.org" metric="10"/>
 	
 <!-- Realm Routing configuration - Uncomment and Edit!
 
