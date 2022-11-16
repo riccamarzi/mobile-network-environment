@@ -17,5 +17,5 @@ RUN dpkg-buildpackage -b -uc -us
 WORKDIR ..
 RUN dpkg -i *.deb
 RUN ldconfig
-RUN cp /etc/rtpengine/rtpengine.sample.conf /etc/rtpengine/rtpengine.conf
+#RUN cp /etc/rtpengine/rtpengine.sample.conf /etc/rtpengine/rtpengine.conf
 CMD /mnt/rtp_startup.sh

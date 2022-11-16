@@ -58,6 +58,8 @@ ip6tables -D rtpengine -p udp -j RTPENGINE --id "$TABLE" 2>/dev/null
 ip6tables -I rtpengine -p udp -j RTPENGINE --id "$TABLE"
 ip6tables-save > /etc/ip6tables.rules
 
+ip r add 10.46.0.0/16 via 10.1.1.18
+
 set -x
 
 exec $RUNTIME $OPTIONS
