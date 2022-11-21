@@ -1,4 +1,0 @@
-zone "ims.mnc001.mcc001.3gppnetwork.org" {
-        type master;
-        file "/etc/bind/ims.mnc001.mcc001.3gppnetwork.org";
-};
