@@ -75,7 +75,7 @@ case $OPEN5GS_COMPONENT in
 		cp /mnt/pcrf.conf /open5gs/install/etc/freeDiameter
 		sed -i "s/MONGO_IP/$MONGO_IP/g" /open5gs/install/etc/open5gs/pcrf.yaml
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
-		sed -i "s/PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
+		sed -i "s/PCSCF_IP/$OPENIMS_PCSCF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		sed -i "s/PCRF_IP/$OPEN5GS_PCRF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		sed -i "s/EPC_DOMAIN/$EPC_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		/mnt/generate_certificates.sh $EPC_DOMAIN

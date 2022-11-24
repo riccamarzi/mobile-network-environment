@@ -3,3 +3,8 @@ zone "ims.mnc001.mcc001.3gppnetwork.org" {
 	type master;
 };
 
+zone "epc.mnc001.mcc001.3gppnetwork.org" {
+	file "/etc/bind/epc.zone";
+	type master;
+};
+

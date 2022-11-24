@@ -6,6 +6,7 @@ services:
                 volumes: 
                         - ./ser_ims/pcscf:/mnt
                 image: openimscore_docker
+                privileged: true
                 expose:
                         - "4060/tcp"
                         - "4060/udp"
@@ -137,6 +138,38 @@ services:
                 tty: true
                 stdin_open: true
 
+        openims_ran:
+                env_file: 
+                        - .env
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_RAN_IP}
+                build: ./srsran
+                environment:
+                        - RAN_COMPONENT=ran
+                container_name: openims_ran
+                privileged: true
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./srsran/mnt:/mnt
+        
+        openims_ran_2:
+                env_file: 
+                        - .env
+                networks:
+                        appnet:
+                                ipv4_address: ${OPENIMS_RAN2_IP}
+                build: ./srsran
+                container_name: openims_ran_2
+                environment:
+                        - RAN_COMPONENT=ran2
+                privileged: true
+                tty: true
+                stdin_open: true
+                volumes:
+                        - ./srsran/mnt:/mnt
+
         openims_mysql:
                 env_file:
                         - .env
@@ -190,7 +223,7 @@ services:
 
 networks:
         appnet:
-                #name: open5gs_appnet
-                ipam:
-                        config:
-                                - subnet: ${NETWORK_SUBNET}
+                name: open5gs_appnet
+                #ipam:
+                #        config:
+                #                - subnet: ${NETWORK_SUBNET}
