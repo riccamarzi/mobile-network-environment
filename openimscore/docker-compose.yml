@@ -23,6 +23,7 @@ services:
                                 ipv4_address: ${OPENIMS_PCSCF_IP}
                                 aliases:
                                         - pcscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - openimspcscf.ims.mnc001.mcc001.3gppnetwork.org
                                         - _sip._udp.pcscf.ims.mnc001.mcc001.3gppnetwork.org
                                         - _sip._tcp.pcscf.ims.mnc001.mcc001.3gppnetwork.org
         openims_icscf:

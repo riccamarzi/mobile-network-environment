@@ -24,4 +24,5 @@ RUN cmake ../
 RUN make -j `nproc`
 RUN make install 
 RUN srsran_install_configs.sh user
-CMD bash
+ADD ./srsran_conf.sh /
+CMD /srsran_conf.sh
