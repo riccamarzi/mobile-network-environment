@@ -6,6 +6,8 @@ cp /mnt/configurator.sh /opt/OpenIMSCore/FHoSS/scripts
 cp /mnt/configurator.sh /opt/OpenIMSCore/FHoSS/config
 sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /opt/OpenIMSCore/FHoSS/deploy/hibernate.properties
 sed -i "s/IMS_DOMAIN/$KAMAILIO_IMS_DOMAIN/g" /opt/OpenIMSCore/FHoSS/deploy/DiameterPeerHSS.xml
+sed -i "s/IMS_DOMAIN/$KAMAILIO_IMS_DOMAIN/g" /mnt/userdata.sql
+sed -i "s/KAMAILIO_FHOSS_IP/$KAMAILIO_FHOSS_IP/g" /opt/OpenIMSCore/FHoSS/deploy/DiameterPeerHSS.xml
 cd /opt/OpenIMSCore/FHoSS/deploy
 ./configurator.sh $KAMAILIO_IMS_DOMAIN $KAMAILIO_FHOSS_IP
 cd ../scripts

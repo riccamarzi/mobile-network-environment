@@ -4,6 +4,9 @@ case $OPENIMS_COMPONENT in
 		cp /mnt/pcscf.* /opt/OpenIMSCore
 		cp /mnt/resolv.conf /etc/resolv.conf
 		sed -i "s/PCSCF_IP/$OPENIMS_PCSCF_IP/g" /opt/OpenIMSCore/pcscf.cfg
+		sed -i "s/PCSCF_IP/$OPENIMS_PCSCF_IP/g" /opt/OpenIMSCore/pcscf.xml
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/pcscf.cfg
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/pcscf.xml
 		ip r add 10.46.0.0/16 via 10.1.1.18 dev eth0
 		/opt/OpenIMSCore/pcscf.sh
 		;;
@@ -12,7 +15,10 @@ case $OPENIMS_COMPONENT in
 		cp /mnt/scscf.* /opt/OpenIMSCore
 		cp /mnt/resolv.conf /etc/resolv.conf
 		sed -i "s/SCSCF_IP/$OPENIMS_SCSCF_IP/g" /opt/OpenIMSCore/scscf.cfg
+		sed -i "s/SCSCF_IP/$OPENIMS_SCSCF_IP/g" /opt/OpenIMSCore/scscf.xml
 		sed -i "s/PCSCF_IP/$OPENIMS_PCSCF_IP/g" /opt/OpenIMSCore/scscf.cfg
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/scscf.cfg
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/scscf.xml
 		/opt/OpenIMSCore/scscf.sh
 		;;
 	icscf)
@@ -20,9 +26,13 @@ case $OPENIMS_COMPONENT in
 		cp /mnt/icscf.* /opt/OpenIMSCore
 		cp /mnt/icscf.sql /opt/OpenIMSCore/ser_ims/cfg
 		sed -i "s/MYSQL_IP/$OPENIMS_MYSQL_IP/g" /opt/OpenIMSCore/icscf.cfg
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/icscf.sql
 		mysql -u root -p$OPENIMS_MYSQL_PWD -h $OPENIMS_MYSQL_IP < /opt/OpenIMSCore/icscf.sql
 		cp /mnt/resolv.conf /etc/resolv.conf
 		sed -i "s/ICSCF_IP/$OPENIMS_ICSCF_IP/g" /opt/OpenIMSCore/icscf.cfg
+		sed -i "s/ICSCF_IP/$OPENIMS_ICSCF_IP/g" /opt/OpenIMSCore/icscf.xml
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/icscf.cfg
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/icscf.xml
 		/opt/OpenIMSCore/icscf.sh
 		;;
 	ecscf)
@@ -30,6 +40,7 @@ case $OPENIMS_COMPONENT in
 		cp /mnt/ecscf.* /opt/OpenIMSCore
 		cp /mnt/resolv.conf /etc/resolv.conf
 		sed -i "s/ECSCF_IP/$OPENIMS_ECSCF_IP/g" /opt/OpenIMSCore/ecscf.cfg
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/ecscf.cfg
 		/opt/OpenIMSCore/ecscf.sh
 		;;
 	lrf)
@@ -37,6 +48,7 @@ case $OPENIMS_COMPONENT in
 		cp /mnt/lrf.cfg /opt/OpenIMSCore
 		cp /mnt/resolv.conf /etc/resolv.conf
 		sed -i "s/LRF_IP/$OPENIMS_LRF_IP/g" /opt/OpenIMSCore/lrf.cfg
+		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/lrf.cfg
 		/opt/OpenIMSCore/lrf.sh
 		;;
 	sipp)

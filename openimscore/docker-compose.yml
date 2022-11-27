@@ -22,10 +22,10 @@ services:
                         appnet:
                                 ipv4_address: ${OPENIMS_PCSCF_IP}
                                 aliases:
-                                        - pcscf.ims.mnc001.mcc001.3gppnetwork.org
-                                        - openimspcscf.ims.mnc001.mcc001.3gppnetwork.org
-                                        - _sip._udp.pcscf.ims.mnc001.mcc001.3gppnetwork.org
-                                        - _sip._tcp.pcscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - pcscf.${OPENIMS_IMS_DOMAIN}
+                                        - openimspcscf.${OPENIMS_IMS_DOMAIN}
+                                        - _sip._udp.pcscf.${OPENIMS_IMS_DOMAIN}
+                                        - _sip._tcp.pcscf.${OPENIMS_IMS_DOMAIN}
         openims_icscf:
                 environment:
                         - OPENIMS_COMPONENT=icscf
@@ -50,9 +50,9 @@ services:
                         appnet:
                                 ipv4_address: ${OPENIMS_ICSCF_IP}
                                 aliases:
-                                        - icscf.ims.mnc001.mcc001.3gppnetwork.org
-                                        - _sip._udp.icscf.ims.mnc001.mcc001.3gppnetwork.org
-                                        - _sip._tcp.icscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - icscf.${OPENIMS_IMS_DOMAIN}
+                                        - _sip._udp.icscf.${OPENIMS_IMS_DOMAIN}
+                                        - _sip._tcp.icscf.${OPENIMS_IMS_DOMAIN}
         openims_scscf:
                 environment:
                         - OPENIMS_COMPONENT=scscf
@@ -73,9 +73,9 @@ services:
                         appnet:
                                 ipv4_address: ${OPENIMS_SCSCF_IP}
                                 aliases:
-                                        - scscf.ims.mnc001.mcc001.3gppnetwork.org
-                                        - _sip._udp.scscf.ims.mnc001.mcc001.3gppnetwork.org
-                                        - _sip._tcp.scscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - scscf.${OPENIMS_IMS_DOMAIN}
+                                        - _sip._udp.scscf.${OPENIMS_IMS_DOMAIN}
+                                        - _sip._tcp.scscf.${OPENIMS_IMS_DOMAIN}
         openims_ecscf:
                 environment:
                         - OPENIMS_COMPONENT=ecscf
@@ -96,7 +96,7 @@ services:
                         appnet:
                                 ipv4_address: ${OPENIMS_ECSCF_IP}
                                 aliases:
-                                        - ecscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - ecscf.${OPENIMS_IMS_DOMAIN}
         openims_lrf:
                 environment:
                         - OPENIMS_COMPONENT=lrf
@@ -115,7 +115,7 @@ services:
                         appnet:
                                 ipv4_address: ${OPENIMS_LRF_IP}
                                 aliases:
-                                        - lrf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - lrf.${OPENIMS_IMS_DOMAIN}
         openims_sipp:
                 environment:
                         - OPENIMS_COMPONENT=sipp
@@ -135,7 +135,7 @@ services:
                         appnet:
                                 ipv4_address: ${OPENIMS_SIPP_IP}
                                 aliases:
-                                        - sipp.ims.mnc001.mcc001.3gppnetwork.org
+                                        - sipp.${OPENIMS_IMS_DOMAIN}
                 tty: true
                 stdin_open: true
 
@@ -199,7 +199,8 @@ services:
                         appnet:
                                 ipv4_address: ${OPENIMS_FHOSS_IP}
                                 aliases:
-                                        - hss.ims.mnc001.mcc001.3gppnetwork.org
+                                        - hss.${OPENIMS_IMS_DOMAIN}
+                                        - openimshss.${OPENIMS_IMS_DOMAIN}
                 volumes:
                         - ./fhoss:/mnt
                 expose:

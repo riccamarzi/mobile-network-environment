@@ -98,7 +98,7 @@ USE `icscf`;
 
 /*!40000 ALTER TABLE `nds_trusted_domains` DISABLE KEYS */;
 LOCK TABLES `nds_trusted_domains` WRITE;
-INSERT INTO `nds_trusted_domains` VALUES (1,'ims.mnc001.mcc001.3gppnetwork.org');
+INSERT INTO `nds_trusted_domains` VALUES (1,'IMS_DOMAIN');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `nds_trusted_domains` ENABLE KEYS */;
 
@@ -109,7 +109,7 @@ UNLOCK TABLES;
 
 /*!40000 ALTER TABLE `s_cscf` DISABLE KEYS */;
 LOCK TABLES `s_cscf` WRITE;
-INSERT INTO `s_cscf` VALUES (1,'First and only S-CSCF','sip:scscf.ims.mnc001.mcc001.3gppnetwork.org:6060');
+INSERT INTO `s_cscf` VALUES (1,'First and only S-CSCF','sip:scscf.IMS_DOMAIN:6060');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `s_cscf` ENABLE KEYS */;
 

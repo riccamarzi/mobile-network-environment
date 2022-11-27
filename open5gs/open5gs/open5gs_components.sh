@@ -80,7 +80,8 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/PCRF_IP/$OPEN5GS_PCRF_IP/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		sed -i "s/EPC_DOMAIN/$EPC_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		/mnt/generate_certificates.sh $EPC_DOMAIN
-		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
+		sed -i "s/KAMAILIO_IMS_DOMAIN/$KAMAILIO_IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
+		sed -i "s/OPENIMS_IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		/open5gs/install/bin/open5gs-pcrfd
 		#bash
 		;;

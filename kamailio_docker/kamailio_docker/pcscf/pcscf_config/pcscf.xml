@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DiameterPeer 
-	FQDN="pcscf.ims.mnc001.mcc001.3gppnetwork.org"
-	Realm="ims.mnc001.mcc001.3gppnetwork.org"
+	FQDN="pcscf.IMS_DOMAIN"
+	Realm="IMS_DOMAIN"
 	Vendor_Id="10415"
 	Product_Name="CDiameterPeer"
 	AcceptUnknownPeers="1"

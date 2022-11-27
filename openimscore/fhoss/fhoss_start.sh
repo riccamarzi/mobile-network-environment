@@ -6,6 +6,8 @@ cp /mnt/configurator.sh /opt/OpenIMSCore/FHoSS/scripts
 cp /mnt/configurator.sh /opt/OpenIMSCore/FHoSS/config
 sed -i "s/OPENIMS_MYSQL_IP/$OPENIMS_MYSQL_IP/g" /opt/OpenIMSCore/FHoSS/deploy/hibernate.properties
 sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/FHoSS/deploy/DiameterPeerHSS.xml
+sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /mnt/userdata.sql
+sed -i "s/OPENIMS_FHOSS_IP/$OPENIMS_FHOSS_IP/g" /opt/OpenIMSCore/FHoSS/deploy/DiameterPeerHSS.xml
 cd /opt/OpenIMSCore/FHoSS/deploy
 ./configurator.sh $OPENIMS_IMS_DOMAIN $OPENIMS_FHOSS_IP
 cd ../scripts

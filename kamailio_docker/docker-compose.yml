@@ -24,7 +24,7 @@ services:
                                 ipv4_address: ${KAMAILIO_FHOSS_IP}
                                 aliases: 
                                         - hss
-                                        - kamailiohss.ims.mnc001.mcc001.3gppnetwork.org
+                                        - kamailiohss.${KAMAILIO_IMS_DOMAIN}
         srsran:
                 build: ./srsran
                 image: kamailio_srsran_docker
@@ -110,7 +110,7 @@ services:
                                 ipv4_address: ${KAMAILIO_PCSCF_IP}
                                 aliases:
                                         - pcscf
-                                        - pcscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - pcscf.${KAMAILIO_IMS_DOMAIN}
         mysql: 
                 image: mysql:5.7
                 container_name: mysql
@@ -140,7 +140,7 @@ services:
                         - 8.8.8.8
                         - ${DNS_IP}
                 dns_search:
-                        - ims.mnc001.mcc001.3gppnetwork.org
+                        - ${KAMAILIO_IMS_DOMAIN}
                 tty: true
                 stdin_open: true
                 volumes:
@@ -152,7 +152,7 @@ services:
                                 ipv4_address: ${KAMAILIO_ICSCF_IP}
                                 aliases: 
                                         - icscf
-                                        - icscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - icscf.${KAMAILIO_IMS_DOMAIN}
         scscf:
                 tty: true
                 stdin_open: true
@@ -160,7 +160,7 @@ services:
                         - 8.8.8.8
                         - ${DNS_IP}
                 dns_search:
-                        - ims.mnc001.mcc001.3gppnetwork.org
+                        - ${KAMAILIO_IMS_DOMAIN}
                 environment:
                         - KAMAILIO_COMPONENT=scscf
                 image: kamailio_docker
@@ -176,7 +176,7 @@ services:
                                 ipv4_address: ${KAMAILIO_SCSCF_IP}
                                 aliases:
                                         - scscf
-                                        - scscf.ims.mnc001.mcc001.3gppnetwork.org
+                                        - scscf.${KAMAILIO_IMS_DOMAIN}
         rtpengine:
                 networks:
                         appnet:

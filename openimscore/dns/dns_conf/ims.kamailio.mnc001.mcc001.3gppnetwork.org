@@ -8,7 +8,7 @@ $TTL 1W
                                         1D )            ; minimum
 
                         1D IN NS        ns
-ns                      1D IN A         10.1.1.254
+ns                      1D IN A         10.1.1.60
 
 pcscf                   1D IN A         KAMAILIO_PCSCF_IP
 _sip._udp.pcscf         1D SRV 0 0 5060 pcscf
@@ -23,4 +23,3 @@ scscf                   1D IN A         KAMAILIO_SCSCF_IP
 _sip._udp.scscf         1D SRV 0 0 6060 scscf
 _sip._tcp.scscf         1D SRV 0 0 6060 scscf
 
-kamailiohss 		1d IN A 	FHOSS_IP

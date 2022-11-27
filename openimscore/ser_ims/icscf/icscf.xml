@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DiameterPeer 
-	FQDN="icscf.ims.mnc001.mcc001.3gppnetwork.org"
-	Realm="ims.mnc001.mcc001.3gppnetwork.org"
+	FQDN="icscf.IMS_DOMAIN"
+	Realm="IMS_DOMAIN"
 	Vendor_Id="10415"
 	Product_Name="CDiameterPeer"
 	AcceptUnknownPeers="1"
@@ -10,28 +10,28 @@
 	Workers="4"
 	QueueLength="8"
 >
-	<Peer FQDN="openimshss.ims.mnc001.mcc001.3gppnetwork.org" Realm="ims.mnc001.mcc001.3gppnetwork.org" port="3868"/> 
+	<Peer FQDN="openimshss.IMS_DOMAIN" Realm="IMS_DOMAIN" port="3868"/> 
 
-	<Acceptor port="3869" bind="0.0.0.0"/>
+	<Acceptor port="3869" bind="ICSCF_IP"/>
 	
 	<Auth id="16777216" vendor="10415"/><!-- 3GPP Cx -->
 	<Auth id="16777216" vendor="4491"/><!-- CableLabs Cx -->
 	<Auth id="16777216" vendor="13019"/><!-- ETSI/TISPAN Cx -->
 
-	<DefaultRoute FQDN="openimshss.ims.mnc001.mcc001.3gppnetwork.org" metric="10"/>
+	<DefaultRoute FQDN="openimshss.IMS_DOMAIN" metric="10"/>
 	
 <!-- Realm Routing configuration - Uncomment and Edit!
 
-	<Realm name="ims.mnc001.mcc001.3gppnetwork.org">
-		<Route FQDN="hss1.ims.mnc001.mcc001.3gppnetwork.org" metric="10"/>
-		<Route FQDN="hss2.ims.mnc001.mcc001.3gppnetwork.org" metric="20"/>
+	<Realm name="IMS_DOMAIN">
+		<Route FQDN="hss1.IMS_DOMAIN" metric="10"/>
+		<Route FQDN="hss2.IMS_DOMAIN" metric="20"/>
 	</Realm>
-	<Realm name="another.ims.mnc001.mcc001.3gppnetwork.org">
-		<Route FQDN="hss3.ims.mnc001.mcc001.3gppnetwork.org" metric="10"/>
-		<Route FQDN="hss2.ims.mnc001.mcc001.3gppnetwork.org" metric="20"/>		
+	<Realm name="another.IMS_DOMAIN">
+		<Route FQDN="hss3.IMS_DOMAIN" metric="10"/>
+		<Route FQDN="hss2.IMS_DOMAIN" metric="20"/>		
 	</Realm>
-	<DefaultRoute FQDN="hss.ims.mnc001.mcc001.3gppnetwork.org" metric="10"/>
-	<DefaultRoute FQDN="hss4.ims.mnc001.mcc001.3gppnetwork.org" metric="20"/>
+	<DefaultRoute FQDN="hss.IMS_DOMAIN" metric="10"/>
+	<DefaultRoute FQDN="hss4.IMS_DOMAIN" metric="20"/>
 
 -->
 
