@@ -242,6 +242,8 @@ services:
                 volumes: 
                         - ./open5gs/pcf:/mnt
                 depends_on:
+                        - open5gs_nrf
+                        - open5gs_scp
                         - open5gs_hss
                 env_file:
                         - .env

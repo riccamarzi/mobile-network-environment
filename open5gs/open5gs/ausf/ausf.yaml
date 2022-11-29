@@ -165,7 +165,6 @@ scp:
     sbi:
       - addr:
           - SCP_IP
-          - ::1
         port: 7777
 
 #
