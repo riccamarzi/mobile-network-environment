@@ -3,6 +3,7 @@ services:
         mongo:
                 image: mongo:4
                 container_name: mongo
+                command: --quiet --logpath /dev/null
                 healthcheck:
                         test: ["CMD", "mongo", "mongodb://127.0.0.1"]
                         interval: 5s
