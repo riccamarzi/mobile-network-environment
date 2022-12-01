@@ -116,29 +116,7 @@ services:
                                 ipv4_address: ${OPENIMS_LRF_IP}
                                 aliases:
                                         - lrf.${OPENIMS_IMS_DOMAIN}
-        openims_sipp:
-                environment:
-                        - OPENIMS_COMPONENT=sipp
-                volumes:
-                        - ./ser_ims/sipp:/mnt
-                image: openimscore_docker
-                container_name: openims_sipp
-                expose:
-                        - "3062/udp"
-                        - "3061/udp"
-                env_file:
-                        - .env
-                          #depends_on: 
-                          #- openims_pcscf
-                          #- openims_fhoss
-                networks:
-                        appnet:
-                                ipv4_address: ${OPENIMS_SIPP_IP}
-                                aliases:
-                                        - sipp.${OPENIMS_IMS_DOMAIN}
-                tty: true
-                stdin_open: true
-
+        
         openims_ran:
                 env_file: 
                         - .env
