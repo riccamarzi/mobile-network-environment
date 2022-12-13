@@ -14,7 +14,7 @@ RUN make -j`nproc` Q=0 all | tee make_all.txt
 RUN make install | tee make_install.txt
 RUN ldconfig
 RUN sed -i 's/# DBENGINE=MYSQL/DBENGINE=MYSQL/' /usr/local/etc/kamailio/kamctlrc
-RUN sed -i 's/# SIP_DOMAIN=kamailio.org/SIP_DOMAIN=ims.mnc001.mcc001.3gppnetwork.org/' /usr/local/etc/kamailio/kamctlrc
+RUN sed -i 's/# SIP_DOMAIN=kamailio.org/SIP_DOMAIN=ims.kamailio.mnc001.mcc001.3gppnetwork.org/' /usr/local/etc/kamailio/kamctlrc
 RUN sed -i 's/# DBROOTUSER="root"/DBROOTUSER="root"/' /usr/local/etc/kamailio/kamctlrc
 RUN sed -i 's/# DBROOTPW="dbrootpw"/DBROOTPW="root"/' /usr/local/etc/kamailio/kamctlrc
 RUN sed -i 's/# DBHOST=localhost/DBHOST=${MYSQL_IP}/' /usr/local/etc/kamailio/kamctlrc
