@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt update && apt install -y git vim wget libssl-dev pkg-config dh-autoreconf ncurses-dev lksctp-tools iproute2 build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev libtool libncurses5-dev libncursesw5-dev
+RUN apt update && apt install -y git vim wget libssl-dev pkg-config dh-autoreconf ncurses-dev lksctp-tools iproute2 build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev libtool libncurses5-dev libncursesw5-dev iputils-ping
 RUN apt clean && apt autoclean && apt autoremove
 WORKDIR /
 RUN git clone https://github.com/SIPp/sipp.git
