@@ -8,6 +8,7 @@ WORKDIR sipp
 RUN git checkout 542be7a00dbd83250dc26ad358e899dcbf8d8f48
 RUN cmake . -DUSE_SSL=1
 RUN make all -j `nproc`
+WORKDIR /
 RUN git clone https://github.com/zeromq/libzmq.git
 WORKDIR libzmq
 RUN ./autogen.sh
