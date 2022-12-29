@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<scenario name="registration">
+	
+<send retrans="500">
+<![CDATA[
+REGISTER sip:IMS_DOMAIN SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+Max-Forwards: 20
+From: "UE_ID" <sip:UE_ID@IMS_DOMAIN>;tag=[call_number]
+To: "UE_ID" <sip:UE_ID@IMS_DOMAIN>
+P-Access-Network-Info: 3GPP-UTRAN-TDD;utran-cell-id-3gpp=C359A3913B20E
+Call-ID: reg///[call_id]
+CSeq: 1 REGISTER
+Contact: <sip:UE_ID@[local_ip]:[local_port]>
+Expires: 60000
+Content-Length: 0
+User-Agent: Sipp v1.1-TLS, version 20061124
+Authorization: Digest username="UE_ID@IMS_DOMAIN", realm="IMS_DOMAIN"
+Supported: path
+]]>
+</send>
+<recv response="100">
+</recv>
+
+<recv response="401" auth="true" rtd="true">
+<action>
+<ereg regexp=".*" search_in="hdr" header="Service-Route" assign_to="1" />
+</action>
+</recv>
+	
+<send retrans="500">
+<![CDATA[
+REGISTER sip:IMS_DOMAIN SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+Route: [$1]
+Max-Forwards: 20
+From: "UE_ID" <sip:UE_ID@IMS_DOMAIN>;tag=[call_number]
+To: "UE_ID" <sip:UE_ID@IMS_DOMAIN>
+P-Access-Network-Info: 3GPP-UTRAN-TDD;utran-cell-id-3gpp=C359A3913B20E
+Call-ID: reg///[call_id]
+CSeq: 2 REGISTER
+Contact: <sip:UE_ID@[local_ip]:[local_port]>
+Expires: 60000
+Content-Length: 0
+User-Agent: Sipp v1.1-TLS, version 20061124
+[authentication username=UE_ID@IMS_DOMAIN aka_K=0xUE_K aka_AMF=0xUE_AMF aka_OP=0xUE_OP]
+Supported: path
+]]>
+</send>
+<recv response="100">
+</recv>	
+<recv response="200">
+</recv>
+
+<ResponseTimeRepartition value="10, 20"/>
+<CallLengthRepartition value="10"/>
+	
+</scenario>
+

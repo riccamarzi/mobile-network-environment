@@ -38,8 +38,8 @@ UNLOCK TABLES;
 
 LOCK TABLES `application_server` WRITE;
 /*!40000 ALTER TABLE `application_server` DISABLE KEYS */;
-INSERT INTO `application_server` VALUES (1,'default_as','sip:10.1.1.106:5065',0,'','presence.ims.openims.mnc001.mcc001.3gppnetwork.org',1024,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-INSERT INTO `application_server` VALUES (2,'smsc_as','sip:smsc.ims.openims.mnc001.mcc001.3gppnetwork.org:7090',0,'','smsc.ims.openims.mnc001.mcc001.3gppnetwork.org',1024,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+INSERT INTO `application_server` VALUES (1,'default_as','sip:10.1.1.106:5065',0,'','presence.ims.mnc001.mcc001.3gppnetwork.org',1024,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+INSERT INTO `application_server` VALUES (2,'smsc_as','sip:smsc.ims.mnc001.mcc001.3gppnetwork.org:7090',0,'','smsc.ims.mnc001.mcc001.3gppnetwork.org',1024,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `application_server` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `impi` WRITE;
 /*!40000 ALTER TABLE `impi` DISABLE KEYS */;
-INSERT INTO `impi` VALUES (4,1,'alice@ims.openims.mnc001.mcc001.3gppnetwork.org','11112233445566778899aabbccddeeff',255,1,'\0\0','\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','','000000000507','','',0,3600,1),(2,2,'bob@ims.openims.mnc001.mcc001.3gppnetwork.org','22112233445566778899aabbccddeeff',255,1,'\0\0','\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','','0000000001cd','','',0,3600,1);
+INSERT INTO `impi` VALUES (4,1,'alice@ims.mnc001.mcc001.3gppnetwork.org','11112233445566778899aabbccddeeff',255,1,'p\0','................','','000000000507','','',0,3600,1),(2,2,'bob@ims.mnc001.mcc001.3gppnetwork.org','22112233445566778899aabbccddeeff',255,1,'p\0','\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','','0000000001cd','','',0,3600,1), (3,3,'001010123456791@ims.mnc001.mcc001.3gppnetwork.org','11112233445566778899aabbccddeeff', 255, 1, '\0\0', '\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1', '', '000000000123', '', '', 0, 3600,1),(1,4,'001010123456792@ims.mnc001.mcc001.3gppnetwork.org','22112233445566778899aabbccddeeff', 255, 1, '\0\0', '\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1', '', '000000000291', '', '', 0, 3600, 1);
 /*!40000 ALTER TABLE `impi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +139,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `impi_impu` WRITE;
 /*!40000 ALTER TABLE `impi_impu` DISABLE KEYS */;
-INSERT INTO `impi_impu` VALUES (4,4,1,0),(2,2,2,0);
+INSERT INTO `impi_impu` VALUES (4,4,1,0),(2,2,2,0),(1,3,5,0),(3,3,6,0),(5,1,7,0),(6,1,8,0),(7,3,3,0),(8,1,4,0);
 /*!40000 ALTER TABLE `impi_impu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +149,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `impu` WRITE;
 /*!40000 ALTER TABLE `impu` DISABLE KEYS */;
-INSERT INTO `impu` VALUES (1,'sip:alice@ims.openims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,1,1,'','',0,1),(2,'sip:bob@ims.openims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,2,1,'','',0,1);
+INSERT INTO `impu` VALUES (1,'sip:alice@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,1,1,'','',0,1),(2,'sip:bob@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,2,1,'','',0,1),(3,'sip:001010123456791@ims.mnc001.mcc001.3gppnetwork.org',0,1,0,1,3,1,'','',0,1),(4,'sip:001010123456792@ims.mnc001.mcc001.3gppnetwork.org',0,1,0,1,4,1,'','',0,1),(5,'tel:0198765432100',0,0,0,1,3,1,'','',0,1),(6,'sip:0198765432100@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,3,1,'','',0,1),(7,'tel:0298765432100',0,0,0,1,4,1,'','',0,1),(8,'sip:0298765432100@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,4,1,'','',0,1);
 /*!40000 ALTER TABLE `impu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +159,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `impu_visited_network` WRITE;
 /*!40000 ALTER TABLE `impu_visited_network` DISABLE KEYS */;
-INSERT INTO `impu_visited_network` VALUES (1,1,1),(2,2,1);
+INSERT INTO `impu_visited_network` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1);
 /*!40000 ALTER TABLE `impu_visited_network` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +169,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `imsu` WRITE;
 /*!40000 ALTER TABLE `imsu` DISABLE KEYS */;
-INSERT INTO `imsu` VALUES (1,'alice','','',1,1),(2,'bob','','',1,1);
+INSERT INTO `imsu` VALUES (1,'alice','','',1,1),(2,'bob','','',1,1), (3,'001010123456791','','',1,1),(4,'001010123456792','','',1,1);
 /*!40000 ALTER TABLE `imsu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `preferred_scscf_set` WRITE;
 /*!40000 ALTER TABLE `preferred_scscf_set` DISABLE KEYS */;
-INSERT INTO `preferred_scscf_set` VALUES (1,1,'scscf1','sip:scscf.ims.openims.mnc001.mcc001.3gppnetwork.org:6060',0);
+INSERT INTO `preferred_scscf_set` VALUES (1,1,'scscf1','sip:scscf.ims.mnc001.mcc001.3gppnetwork.org:6060',0);
 /*!40000 ALTER TABLE `preferred_scscf_set` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,7 +279,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `visited_network` WRITE;
 /*!40000 ALTER TABLE `visited_network` DISABLE KEYS */;
-INSERT INTO `visited_network` VALUES (1,'ims.openims.mnc001.mcc001.3gppnetwork.org');
+INSERT INTO `visited_network` VALUES (1,'ims.mnc001.mcc001.3gppnetwork.org');
 /*!40000 ALTER TABLE `visited_network` ENABLE KEYS */;
 UNLOCK TABLES;
 

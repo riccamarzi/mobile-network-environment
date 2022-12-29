@@ -1,10 +1,5 @@
-zone "ims.openims.mnc001.mcc001.3gppnetwork.org" {
+zone "ims.mnc001.mcc001.3gppnetwork.org" {
 	file "/etc/bind/open-ims.test";
-	type master;
-};
-
-zone "ims.kamailio.mnc001.mcc001.3gppnetwork.org" {
-	file "/etc/bind/ims.kamailio.mnc001.mcc001.3gppnetwork.org";
 	type master;
 };
 

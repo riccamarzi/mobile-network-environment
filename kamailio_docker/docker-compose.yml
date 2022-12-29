@@ -13,7 +13,7 @@ services:
                           #        ports:
                           #- "8080:8080/tcp"
                 env_file: 
-                        - .env
+                        - ../.env
                 volumes:
                         - ./fhoss/fhoss_conf:/mnt
                 depends_on: 
@@ -25,60 +25,60 @@ services:
                                 aliases: 
                                         - hss
                                         - kamailiohss.${KAMAILIO_IMS_DOMAIN}
-        srsran:
-                build: ./srsran
-                image: kamailio_srsran_docker
-                devices: 
-                        - /dev/bus/usb:/dev/bus/usb
-                tty: true
-                stdin_open: true
-                container_name: kamailio_srsran
-                volumes:
-                        - ./srsran/mnt:/mnt
-                privileged: true
-                networks:
-                        appnet:
-                                ipv4_address: ${KAMAILIO_SRSRAN_IP}
-                env_file:
-                        - .env
-        sip:
-                build: ./sip
-                image: kamailio_sip_docker
-                tty: true
-                stdin_open: true
-                container_name: kamailio_sipp
-                expose:
-                        - "3061/udp"
-                        - "3062/udp"
-                cap_add:
-                        - NET_ADMIN
-                privileged: true
-                env_file:
-                        - .env
-                volumes: 
-                        - ./sip:/mnt
-                networks:
-                        appnet:
-                                ipv4_address: ${KAMAILIO_SIP_IP}
-        sip2:
-                build: ./sip
-                image: kamailio_sip_docker
-                tty: true
-                stdin_open: true
-                container_name: kamailio_sipp_2
-                expose:
-                        - "3061/udp"
-                        - "3062/udp"
-                cap_add:
-                        - NET_ADMIN
-                privileged: true
-                env_file:
-                        - .env
-                volumes: 
-                        - ./sip:/mnt
-                networks:
-                        appnet:
-                                ipv4_address: 10.1.1.50
+#        srsran:
+#                build: ./srsran
+#                image: kamailio_srsran_docker
+#                devices: 
+#                        - /dev/bus/usb:/dev/bus/usb
+#                tty: true
+#                stdin_open: true
+#                container_name: kamailio_srsran
+#                volumes:
+#                        - ./srsran/mnt:/mnt
+#                privileged: true
+#                networks:
+#                        appnet:
+#                                ipv4_address: ${KAMAILIO_SRSRAN_IP}
+#                env_file:
+#                        - ../.env
+#        sip:
+#                build: ./sip
+#                image: kamailio_sip_docker
+#                tty: true
+#                stdin_open: true
+#                container_name: kamailio_sipp
+#                expose:
+#                        - "3061/udp"
+#                        - "3062/udp"
+#                cap_add:
+#                        - NET_ADMIN
+#                privileged: true
+#                env_file:
+#                        - ../.env
+#                volumes: 
+#                        - ./sip:/mnt
+#                networks:
+#                        appnet:
+#                                ipv4_address: ${KAMAILIO_SIP_IP}
+#        sip2:
+#                build: ./sip
+#                image: kamailio_sip_docker
+#                tty: true
+#                stdin_open: true
+#                container_name: kamailio_sipp_2
+#                expose:
+#                        - "3061/udp"
+#                        - "3062/udp"
+#                cap_add:
+#                        - NET_ADMIN
+#                privileged: true
+#                env_file:
+#                        - ../.env
+#                volumes: 
+#                        - ./sip:/mnt
+#                networks:
+#                        appnet:
+#                                ipv4_address: 10.1.1.50
         pcscf:
                 build: ./kamailio_docker
                 image: kamailio_docker
@@ -99,7 +99,7 @@ services:
                 volumes:
                         - ./kamailio_docker/pcscf:/mnt
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - KAMAILIO_COMPONENT=pcscf
                 depends_on: 
@@ -119,7 +119,7 @@ services:
                 tty: true
                 stdin_open: true
                 env_file:
-                        - .env
+                        - ../.env
                 networks:
                         appnet:
                                 ipv4_address: ${KAMAILIO_MYSQL_IP}
@@ -134,7 +134,7 @@ services:
                 environment:
                         - KAMAILIO_COMPONENT=icscf
                 env_file:
-                        - .env
+                        - ../.env
                 container_name: kamailio_icscf
                 dns: 
                         - 8.8.8.8
@@ -165,7 +165,7 @@ services:
                         - KAMAILIO_COMPONENT=scscf
                 image: kamailio_docker
                 env_file:
-                        - .env
+                        - ../.env
                 container_name: kamailio_scscf
                 volumes:
                         - ./kamailio_docker/scscf:/mnt
@@ -211,7 +211,7 @@ services:
                 stdin_open: true
                 build: ./dns
                 env_file:
-                        - .env
+                        - ../.env
                 container_name: kamailio_dns
                 volumes: 
                         - ./dns/dns_conf:/mnt

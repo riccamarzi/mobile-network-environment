@@ -9,7 +9,7 @@ services:
                         interval: 5s
                         timeout: 5s       
                 env_file:
-                        - .env
+                        - ../.env
                 networks:
                         appnet:
                                 ipv4_address: ${MONGO_IP}
@@ -31,7 +31,7 @@ services:
                 volumes: 
                         - ./open5gs/hss:/mnt
                 env_file:
-                        - .env
+                        - ../.env
                 networks:
                         appnet:
                                 ipv4_address: ${HSS_IP}
@@ -54,7 +54,7 @@ services:
                         - open5gs_smf
                         - open5gs_upf
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=mme
                 networks:
@@ -71,7 +71,7 @@ services:
                         - open5gs_smf
                         - open5gs_upf
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=sgwc
                 networks:
@@ -88,7 +88,7 @@ services:
                         - open5gs_smf
                         - open5gs_upf
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=sgwu
                 networks:
@@ -105,7 +105,7 @@ services:
                         - open5gs_nrf
                         - open5gs_scp
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=smf
                 networks:
@@ -130,7 +130,7 @@ services:
                         - open5gs_scp
                         - open5gs_smf
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=upf
                 networks:
@@ -154,7 +154,7 @@ services:
                         - open5gs_pcf
                         - open5gs_bsf
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=amf
                 networks:
@@ -170,7 +170,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=pcrf
                 networks:
@@ -188,7 +188,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=nrf
                 networks:
@@ -202,7 +202,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=scp
                 networks:
@@ -217,7 +217,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=ausf
                 networks:
@@ -231,7 +231,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=udm
                 networks:
@@ -247,7 +247,7 @@ services:
                         - open5gs_scp
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=pcf
                 networks:
@@ -261,7 +261,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=nssf
                 networks:
@@ -275,7 +275,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=bsf
                 networks:
@@ -289,7 +289,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=udr
                 networks:
@@ -307,7 +307,7 @@ services:
                 depends_on:
                         - open5gs_hss
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - OPEN5GS_COMPONENT=webui
                 networks:

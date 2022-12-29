@@ -17,7 +17,7 @@ services:
                 stdin_open: true
                 container_name: openims_pcscf
                 env_file:
-                        - .env
+                        - ../.env
                 networks:
                         appnet:
                                 ipv4_address: ${OPENIMS_PCSCF_IP}
@@ -44,7 +44,7 @@ services:
                                 condition: service_started
 
                 env_file:
-                        - .env
+                        - ../.env
                 container_name: openims_icscf
                 networks:
                         appnet:
@@ -66,7 +66,7 @@ services:
                         - "6060/udp"
                 container_name: openims_scscf
                 env_file:
-                        - .env
+                        - ../.env
                 depends_on: 
                         - openims_pcscf
                 networks:
@@ -89,7 +89,7 @@ services:
                         - "7060/udp"
                 container_name: openims_ecscf
                 env_file:
-                        - .env
+                        - ../.env
                 depends_on: 
                         - openims_pcscf
                 networks:
@@ -97,61 +97,61 @@ services:
                                 ipv4_address: ${OPENIMS_ECSCF_IP}
                                 aliases:
                                         - ecscf.${OPENIMS_IMS_DOMAIN}
-        openims_lrf:
-                environment:
-                        - OPENIMS_COMPONENT=lrf
-                volumes:
-                        - ./ser_ims/lrf:/mnt
-                image: openimscore_docker
-                container_name: openims_lrf
-                expose: 
-                        - "8060/tcp"
-                        - "8060/udp"
-                env_file:
-                        - .env
-                depends_on:
-                        - openims_pcscf
-                networks:
-                        appnet:
-                                ipv4_address: ${OPENIMS_LRF_IP}
-                                aliases:
-                                        - lrf.${OPENIMS_IMS_DOMAIN}
-        
-        openims_ran:
-                env_file: 
-                        - .env
-                networks:
-                        appnet:
-                                ipv4_address: ${OPENIMS_RAN_IP}
-                build: ./srsran
-                environment:
-                        - RAN_COMPONENT=ran
-                container_name: openims_ran
-                privileged: true
-                tty: true
-                stdin_open: true
-                volumes:
-                        - ./srsran/mnt:/mnt
-        
-        openims_ran_2:
-                env_file: 
-                        - .env
-                networks:
-                        appnet:
-                                ipv4_address: ${OPENIMS_RAN2_IP}
-                build: ./srsran
-                container_name: openims_ran_2
-                environment:
-                        - RAN_COMPONENT=ran2
-                privileged: true
-                tty: true
-                stdin_open: true
-                volumes:
-                        - ./srsran/mnt:/mnt
-
+#        openims_lrf:
+#                environment:
+#                        - OPENIMS_COMPONENT=lrf
+#                volumes:
+#                        - ./ser_ims/lrf:/mnt
+#                image: openimscore_docker
+#                container_name: openims_lrf
+#                expose: 
+#                        - "8060/tcp"
+#                        - "8060/udp"
+#                env_file:
+#                        - ../.env
+#                depends_on:
+#                        - openims_pcscf
+#                networks:
+#                        appnet:
+#                                ipv4_address: ${OPENIMS_LRF_IP}
+#                                aliases:
+#                                        - lrf.${OPENIMS_IMS_DOMAIN}
+#        
+#        openims_ran:
+#                env_file: 
+#                        - ../.env
+#                networks:
+#                        appnet:
+#                                ipv4_address: ${OPENIMS_RAN_IP}
+#                build: ./srsran
+#                environment:
+#                        - RAN_COMPONENT=ran
+#                container_name: openims_ran
+#                privileged: true
+#                tty: true
+#                stdin_open: true
+#                volumes:
+#                        - ./srsran/mnt:/mnt
+#        
+#        openims_ran_2:
+#                env_file: 
+#                        - ../.env
+#                networks:
+#                        appnet:
+#                                ipv4_address: ${OPENIMS_RAN2_IP}
+#                build: ./srsran
+#                container_name: openims_ran_2
+#                environment:
+#                        - RAN_COMPONENT=ran2
+#                privileged: true
+#                tty: true
+#                stdin_open: true
+#                volumes:
+#                        - ./srsran/mnt:/mnt
+#
         openims_mysql:
                 env_file:
-                        - .env
+                        - ../.env
                 environment:
                         - MYSQL_ROOT_PASSWORD=${OPENIMS_MYSQL_PWD}
                 networks:
@@ -167,7 +167,7 @@ services:
                         interval: 5s
         openims_fhoss:
                 env_file:
-                        - .env
+                        - ../.env
                 build: ./fhoss
                 image: openimscore_fhoss_docker
                 tty: true
@@ -190,7 +190,7 @@ services:
                                 condition: service_healthy
         openims_dns:
                 env_file:
-                        - .env
+                        - ../.env
                 build: ./dns
                 container_name: dns
                 expose:

@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+        enb:
+                build: ./enb
+                container_name: enb_uhd
+                image: enb_uhd
+                privileged: true
+                volumes:
+                        - ./enb/mnt:/mnt
+                networks:
+                        appnet:
+                                ipv4_address: ${ENB_UHD_IP}
+                env_file:
+                        - ../.env
+                tty: true
+                stdin_open: true
+                devices:
+                        - /dev/bus/usb:/dev/bus/usb
+networks:
+        appnet:
+                name: open5gs_appnet
+                

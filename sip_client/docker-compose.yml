@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+        sipp:
+                build: ./sipp
+                image: sipp_image
+                tty: true
+                privileged: true
+                environment:
+                        - DEFAULT_IMS_IMPI=alice
+                cap_add:
+                        - NET_ADMIN
+                stdin_open: true
+                env_file:
+                        - ../.env
+                container_name: sipp
+                volumes: 
+                        - ./sipp:/mnt
+                networks: 
+                        appnet:
+                                ipv4_address: ${SIPP_IP}
+        sipp_2:
+                image: sipp_image
+                tty: true
+                stdin_open: true
+                privileged: true
+                cap_add: 
+                        - NET_ADMIN
+                env_file:
+                        - ../.env
+                container_name: sipp_2
+                environment:
+                        - DEFAULT_IMS_IMPI=bob
+                volumes: 
+                        - ./sipp:/mnt
+                networks:
+                        appnet:
+                                ipv4_address: ${SIPP_II_IP}                 
+networks:
+        appnet:
+                name: open5gs_appnet
