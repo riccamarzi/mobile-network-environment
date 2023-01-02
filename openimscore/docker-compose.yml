@@ -8,8 +8,13 @@ services:
                 image: openimscore_docker
                 privileged: true
                 expose:
-                        - "4060/tcp"
-                        - "4060/udp"
+                        - "3871/udp"
+                        - "3871/tcp"
+                        - "5060/tcp"
+                        - "5060/udp"
+                        - "5100-5120/tcp"
+                        - "5100-5120/udp"
+                        - "6100-6120/tcp"
                 depends_on:
                         openims_mysql:
                                 condition: service_healthy
@@ -34,8 +39,8 @@ services:
                 image: openimscore_docker
                 tty: true
                 expose:
-                        - "5060/tcp"
-                        - "5060/udp"
+                        - "4060/tcp"
+                        - "4060/udp"
                 stdin_open: true
                 depends_on: 
                         openims_mysql:

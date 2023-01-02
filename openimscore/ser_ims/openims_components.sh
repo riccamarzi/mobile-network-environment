@@ -7,7 +7,7 @@ case $OPENIMS_COMPONENT in
 		sed -i "s/PCSCF_IP/$OPENIMS_PCSCF_IP/g" /opt/OpenIMSCore/pcscf.xml
 		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/pcscf.cfg
 		sed -i "s/IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /opt/OpenIMSCore/pcscf.xml
-		ip r add 10.46.0.0/16 via 10.1.1.18 dev eth0
+		ip r add 10.46.0.0/16 via $OPEN5GS_UPF_IP dev eth0
 		/opt/OpenIMSCore/pcscf.sh
 		;;
 	scscf)
