@@ -122,38 +122,6 @@ services:
 #                                aliases:
 #                                        - lrf.${OPENIMS_IMS_DOMAIN}
 #        
-#        openims_ran:
-#                env_file: 
-#                        - ../.env
-#                networks:
-#                        appnet:
-#                                ipv4_address: ${OPENIMS_RAN_IP}
-#                build: ./srsran
-#                environment:
-#                        - RAN_COMPONENT=ran
-#                container_name: openims_ran
-#                privileged: true
-#                tty: true
-#                stdin_open: true
-#                volumes:
-#                        - ./srsran/mnt:/mnt
-#        
-#        openims_ran_2:
-#                env_file: 
-#                        - ../.env
-#                networks:
-#                        appnet:
-#                                ipv4_address: ${OPENIMS_RAN2_IP}
-#                build: ./srsran
-#                container_name: openims_ran_2
-#                environment:
-#                        - RAN_COMPONENT=ran2
-#                privileged: true
-#                tty: true
-#                stdin_open: true
-#                volumes:
-#                        - ./srsran/mnt:/mnt
-#
         openims_mysql:
                 env_file:
                         - ../.env
@@ -197,6 +165,7 @@ services:
                 env_file:
                         - ../.env
                 build: ./dns
+                image: openimscore_dns
                 container_name: dns
                 expose:
                         - "53/udp"

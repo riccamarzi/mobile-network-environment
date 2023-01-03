@@ -41,44 +41,6 @@ services:
 #                                ipv4_address: ${KAMAILIO_SRSRAN_IP}
 #                env_file:
 #                        - ../.env
-#        sip:
-#                build: ./sip
-#                image: kamailio_sip_docker
-#                tty: true
-#                stdin_open: true
-#                container_name: kamailio_sipp
-#                expose:
-#                        - "3061/udp"
-#                        - "3062/udp"
-#                cap_add:
-#                        - NET_ADMIN
-#                privileged: true
-#                env_file:
-#                        - ../.env
-#                volumes: 
-#                        - ./sip:/mnt
-#                networks:
-#                        appnet:
-#                                ipv4_address: ${KAMAILIO_SIP_IP}
-#        sip2:
-#                build: ./sip
-#                image: kamailio_sip_docker
-#                tty: true
-#                stdin_open: true
-#                container_name: kamailio_sipp_2
-#                expose:
-#                        - "3061/udp"
-#                        - "3062/udp"
-#                cap_add:
-#                        - NET_ADMIN
-#                privileged: true
-#                env_file:
-#                        - ../.env
-#                volumes: 
-#                        - ./sip:/mnt
-#                networks:
-#                        appnet:
-#                                ipv4_address: 10.1.1.50
         pcscf:
                 build: ./kamailio_docker
                 image: kamailio_docker
