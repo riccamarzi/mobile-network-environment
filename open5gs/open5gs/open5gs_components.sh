@@ -45,7 +45,7 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/SCP_IP/$OPEN5GS_SCP_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		sed -i "s/UPF_IP/$OPEN5GS_UPF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
-		sed -i "s/PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
+		sed -i "s/PCSCF_IP/$OPENIMS_PCSCF_IP/g" /open5gs/install/etc/open5gs/smf.yaml
 		sed -i "s/EPC_DOMAIN/$EPC_DOMAIN/g" /open5gs/install/etc/freeDiameter/smf.conf
 		/mnt/generate_certificates.sh $EPC_DOMAIN
 		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/smf.conf
