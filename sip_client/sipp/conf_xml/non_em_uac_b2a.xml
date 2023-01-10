@@ -136,7 +136,7 @@ Content-Length: 0
 ACK sip:CALLED_ID@IMS_DOMAIN SIP/2.0
 [last_Via:]
 Max-Forwards: 20
-From: <sip:bob@IMS_DOMAIN>;tag=[call_number]
+From: <sip:CALLER_ID@IMS_DOMAIN>;tag=[call_number]
 [last_To:]
 Call-ID: [call_id]
 CSeq: 10 ACK

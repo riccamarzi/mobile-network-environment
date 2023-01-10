@@ -15,7 +15,7 @@ To: <sip:001010123456791@ims.mnc001.mcc001.3gppnetwork.org>
 From: <sip:001010123456791@ims.mnc001.mcc001.3gppnetwork.org>;tag=a6177b76
 Call-ID: [call_id]
 CSeq: 1 REGISTER
-Expires: 600000
+Expires: 60000
 Allow: INVITE, ACK, OPTIONS, CANCEL, BYE, UPDATE, INFO, REFER, NOTIFY, MESSAGE, PRACK
 Supported: path, gruu, sec-agree
 User-Agent: SM-G973F-VC6 Samsung IMS 6.0
@@ -45,8 +45,8 @@ To: "001010123456791" <sip:001010123456791@ims.mnc001.mcc001.3gppnetwork.org>
 P-Access-Network-Info: 3GPP-UTRAN-TDD;utran-cell-id-3gpp=C359A3913B20E
 Call-ID: reg///[call_id]
 CSeq: 2 REGISTER
-Contact: <sip:001010123456791@[local_ip]:[local_port]>
-Expires: 3600
+Contact: <sip:[local_ip]:[local_port]>
+Expires: 60000
 Content-Length: 0
 User-Agent: Sipp v1.1-TLS, version 20061124
 [authentication username=001010123456791@ims.mnc001.mcc001.3gppnetwork.org aka_K=0x11112233445566778899aabbccddeeff aka_AMF=0x8000 aka_OP=0x11111111111111111111111111111111]

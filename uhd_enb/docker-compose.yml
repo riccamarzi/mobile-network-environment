@@ -4,12 +4,32 @@ services:
                 build: ./enb
                 container_name: enb_uhd
                 image: enb_uhd
+                environment:
+                        - ENB_COMPONENT=enb1
                 privileged: true
                 volumes:
                         - ./enb/mnt:/mnt
                 networks:
                         appnet:
                                 ipv4_address: ${ENB_UHD_IP}
+                env_file:
+                        - ../.env
+                tty: true
+                stdin_open: true
+                devices:
+                        - /dev/bus/usb:/dev/bus/usb
+        enb_2:
+                build: ./enb
+                container_name: enb_uhd_2
+                image: enb_uhd
+                privileged: true
+                environment:
+                        - ENB_COMPONENT=enb2
+                volumes:
+                        - ./enb/mnt:/mnt
+                networks:
+                        appnet:
+                                ipv4_address: ${ENB_II_UHD_IP}
                 env_file:
                         - ../.env
                 tty: true

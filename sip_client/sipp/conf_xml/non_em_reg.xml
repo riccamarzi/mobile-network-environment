@@ -21,7 +21,7 @@ Authorization: Digest username="UE_ID@IMS_DOMAIN", realm="IMS_DOMAIN"
 Supported: path
 ]]>
 </send>
-<recv response="100">
+<recv response="100" optional="true">
 </recv>
 
 <recv response="401" auth="true" rtd="true">
@@ -49,7 +49,7 @@ User-Agent: Sipp v1.1-TLS, version 20061124
 Supported: path
 ]]>
 </send>
-<recv response="100">
+<recv response="100" optional="true">
 </recv>	
 <recv response="200">
 </recv>

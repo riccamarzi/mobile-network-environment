@@ -149,7 +149,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `impu` WRITE;
 /*!40000 ALTER TABLE `impu` DISABLE KEYS */;
-INSERT INTO `impu` VALUES (1,'sip:alice@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,1,1,'','',0,1),(2,'sip:bob@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,2,1,'','',0,1),(3,'sip:001010123456791@ims.mnc001.mcc001.3gppnetwork.org',0,1,0,1,3,1,'','',0,1),(4,'sip:001010123456792@ims.mnc001.mcc001.3gppnetwork.org',0,1,0,1,4,1,'','',0,1),(5,'tel:0198765432100',0,0,0,1,3,1,'','',0,1),(6,'sip:0198765432100@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,3,1,'','',0,1),(7,'tel:0298765432100',0,0,0,1,4,1,'','',0,1),(8,'sip:0298765432100@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,4,1,'','',0,1);
+INSERT INTO `impu` VALUES (1,'sip:alice@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,1,1,'','',0,1),(2,'sip:bob@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,2,1,'','',0,1),(3,'sip:001010123456791@ims.mnc001.mcc001.3gppnetwork.org',0,1,0,1,3,1,'','',0,1),(4,'sip:001010123456792@ims.mnc001.mcc001.3gppnetwork.org',0,1,0,1,4,1,'','',0,1),(5,'tel:01987654321000',0,0,0,1,3,1,'','',0,1),(6,'sip:01987654321000@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,3,1,'','',0,1),(7,'tel:02987654321000',0,0,0,1,4,1,'','',0,1),(8,'sip:02987654321000@ims.mnc001.mcc001.3gppnetwork.org',0,0,0,1,4,1,'','',0,1);
 /*!40000 ALTER TABLE `impu` ENABLE KEYS */;
 UNLOCK TABLES;
 
