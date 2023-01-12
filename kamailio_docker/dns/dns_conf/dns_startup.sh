@@ -16,7 +16,7 @@ sed -i "s/SCSCF_IP/$OPENIMS_SCSCF_IP/g" /etc/bind/ims.openims.mnc001.mcc001.3gpp
 sed -i "s/LRF_IP/$OPENIMS_LRF_IP/g" /etc/bind/ims.openims.mnc001.mcc001.3gppnetwork.org
 sed -i "s/OPEN5GS_SMF_IP/$OPEN5GS_SMF_IP/g" /etc/bind/epc.mnc001.mcc001.3gppnetwork.org
 sed -i "s/OPEN5GS_PCRF_IP/$OPEN5GS_PCRF_IP/g" /etc/bind/epc.mnc001.mcc001.3gppnetwork.org
-sed -i "s/HSS_IP/$KAMAILIO_FHOSS_IP/g" /etc/bind/ims.mnc001.mcc001.3gppnetwork.org
+sed -i "s/HSS_IP/$HSS_IP/g" /etc/bind/ims.mnc001.mcc001.3gppnetwork.org
 sed -i "s/FHOSS_IP/$KAMAILIO_FHOSS_IP/g" /etc/bind/ims.mnc001.mcc001.3gppnetwork.org
 
 /usr/sbin/named -c /etc/bind/named.conf -g -u bind

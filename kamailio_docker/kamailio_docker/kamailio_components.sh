@@ -50,6 +50,8 @@ case $KAMAILIO_COMPONENT in
 		sed -i "s/KAMAILIO_MYSQL_IP/$KAMAILIO_MYSQL_IP/g" /etc/kamailio_pcscf/pcscf.cfg 
 		sed -i "s/IMS_DOMAIN/$KAMAILIO_IMS_DOMAIN/g" /etc/kamailio_pcscf/pcscf.cfg 
 		sed -i "s/IMS_DOMAIN/$KAMAILIO_IMS_DOMAIN/g" /etc/kamailio_pcscf/pcscf.xml 
+		sed -i "s/EPC_DOMAIN/$EPC_DOMAIN/g" /etc/kamailio_pcscf/pcscf.xml 
+		sed -i "s/EPC_DOMAIN/$EPC_DOMAIN/g" /etc/kamailio_pcscf/pcscf.cfg 
 		sed -i "s/KAMAILIO_RTP_IP/$KAMAILIO_RTP_IP/g" /etc/kamailio_pcscf/kamailio_pcscf.cfg
 		cp /mnt/pcscf_config/resolv.conf /etc
 		ip r add 10.46.0.0/16 via $OPEN5GS_UPF_IP

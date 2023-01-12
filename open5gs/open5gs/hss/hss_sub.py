@@ -152,25 +152,29 @@ subs_config = [
         'imsi': '001010123456780',
         'k': '11112233445566778899aabbccddeeff',
         'op': '11111111111111111111111111111111',
-        'amf': '8000'
+        'amf': '8000',
+        'isdn': ''
     },
     {
         'imsi': '001010123456781',
         'k': '22112233445566778899aabbccddeeff',
         'op': '11111111111111111111111111111111',
-        'amf': '8000'
+        'amf': '8000',
+        'isdn': ''
     },
     {
         'imsi': '001010123456791',
         'k': '11112233445566778899aabbccddeeff',
         'op': '11111111111111111111111111111111',
-        'amf': '8000'
+        'amf': '8000',
+        'isdn': ['01987654321000']
     },
     {
         'imsi': '001010123456792',
         'k': '22112233445566778899aabbccddeeff',
         'op': '11111111111111111111111111111111',
-        'amf': '8000'
+        'amf': '8000',
+        'isdn': ['02987654321000']
     }
 ]   
 
@@ -180,7 +184,9 @@ def fill_data_subs(data):
     ue['security']['k'] = data['k']
     ue['security']['op'] = data['op']
     ue['security']['amf'] = data['amf']
+    ue['msisdn'] = data['isdn']
     return deepcopy(ue)
+    
 
 subs_array = [fill_data_subs(sub) for sub in subs_config]
 

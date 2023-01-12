@@ -21,6 +21,8 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/SGWC_IP/$OPEN5GS_SGWC_IP/g" /open5gs/install/etc/open5gs/mme.yaml
 		sed -i "s/SMF_IP/$OPEN5GS_SMF_IP/g" /open5gs/install/etc/open5gs/mme.yaml
 		sed -i "s/MME_IP/$OPEN5GS_MME_IP/g" /open5gs/install/etc/open5gs/mme.yaml
+		sed -i "s/MCC/$MCC/g" /open5gs/install/etc/open5gs/mme.yaml
+		sed -i "s/MNC/$MNC/g" /open5gs/install/etc/open5gs/mme.yaml
 		/mnt/generate_certificates.sh
 		sed -i "s/IMS_DOMAIN/$IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/mme.conf
 		/open5gs/install/bin/open5gs-mmed

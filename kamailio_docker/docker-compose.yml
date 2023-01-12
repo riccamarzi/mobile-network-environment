@@ -2,29 +2,29 @@ version: '3.9'
 
 services:
         ############## KAMAILIO ##################
-        fhoss:
-                build: ./fhoss
-                image: kamailio_fhoss_docker
-                container_name: kamailio_fhoss
-                expose:
-                        - "8080/tcp"
-                        - "3868/tcp"
-                        - "3868/udp"
-                          #        ports:
-                          #- "8080:8080/tcp"
-                env_file: 
-                        - ../.env
-                volumes:
-                        - ./fhoss/fhoss_conf:/mnt
-                depends_on: 
-                        mysql:
-                                condition: service_healthy
-                networks:
-                        appnet:
-                                ipv4_address: ${KAMAILIO_FHOSS_IP}
-                                aliases: 
-                                        - hss
-                                        - kamailiohss.${KAMAILIO_IMS_DOMAIN}
+#        fhoss:
+#                build: ./fhoss
+#                image: kamailio_fhoss_docker
+#                container_name: kamailio_fhoss
+#                expose:
+#                        - "8080/tcp"
+#                        - "3868/tcp"
+#                        - "3868/udp"
+#                ports:
+#                          - "8080:8080/tcp"
+#                env_file: 
+#                        - ../.env
+#                volumes:
+#                        - ./fhoss/fhoss_conf:/mnt
+#                depends_on: 
+#                        mysql:
+#                                condition: service_healthy
+#                networks:
+#                        appnet:
+#                                ipv4_address: ${KAMAILIO_FHOSS_IP}
+#                                aliases: 
+#                                        - hss
+#                                        - kamailiohss.${KAMAILIO_IMS_DOMAIN}
 #        srsran:
 #                build: ./srsran
 #                image: kamailio_srsran_docker

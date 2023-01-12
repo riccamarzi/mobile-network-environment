@@ -15,7 +15,7 @@
 	MaxAuthSessionTimeout="3600"
 >
 
-	<Peer FQDN="kamailiohss.IMS_DOMAIN" Realm="IMS_DOMAIN" port="3868"/>
+	<Peer FQDN="hss.IMS_DOMAIN" Realm="IMS_DOMAIN" port="3868"/>
 
 	<Acceptor port="3869" bind="10.1.1.4"/>
 
@@ -23,6 +23,8 @@
 	<Auth id="16777216" vendor="4491"/><!-- CableLabs Cx -->
 	<Auth id="16777216" vendor="13019"/><!-- ETSI/TISPAN Cx -->
 	<Auth id="16777216" vendor="0"/><!-- ETSI/TISPAN Cx -->
+	<Auth id="16777236" vendor="0"/><!-- ETSI/TISPAN Cx -->
+	<Auth id="16777236" vendor="10415"/><!-- ETSI/TISPAN Cx -->
 
         <!-- 
                 Supported Vendor IDs - list of values which will be sent in the CER/CEA in the
@@ -30,5 +32,5 @@
         -->
         <SupportedVendor vendor="10415" />
 
-	<DefaultRoute FQDN="kamailiohss.IMS_DOMAIN" metric="10"/>
+	<DefaultRoute FQDN="hss.IMS_DOMAIN" metric="10"/>
 </DiameterPeer>
