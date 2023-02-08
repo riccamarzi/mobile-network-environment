@@ -2,9 +2,6 @@
 mkdir -p /root/.config/srsran
 cp /mnt/srs_conf/*.conf  /root/.config/srsran
 cp /mnt/conf_xml/non_em_reg.xml /sipp
-sed -i "s/UPF_IP/$OPEN5GS_UPF_IP/g" /mnt/start_ims_register.sh
-sed -i "s/KAMAILIO_PCSCF_IP/$KAMAILIO_PCSCF_IP/g" /mnt/start_ims_register.sh
-sed -i "s/OPENIMS_PCSCF_IP/$OPENIMS_PCSCF_IP/g" /mnt/start_ims_register.sh
 
 case $DEFAULT_IMS_IMPI in
 	alice)

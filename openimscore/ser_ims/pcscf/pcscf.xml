@@ -16,7 +16,9 @@
 	
 	<Auth id="16777231" vendor="13019"/><!-- ETSI e2 -->
 	<Auth id="16777236" vendor="10415"/><!-- ETSI e2 -->
+	<Auth id="16777251" vendor="10415"/><!-- ETSI e2 -->
 	<Auth id="16777236" vendor="0"/><!-- ETSI e2 -->
+	<Auth id="16777251" vendor="0"/><!-- ETSI e2 -->
 
 	<DefaultRoute FQDN="pcrf.epc.mnc001.mcc001.3gppnetwork.org" metric="10"/>
 	

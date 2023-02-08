@@ -138,29 +138,29 @@ services:
                         test: ["CMD", "mysql", "-u", "root", "-proot"]
                         timeout: 5s
                         interval: 5s
-        openims_fhoss:
-                env_file:
-                        - ../.env
-                build: ./fhoss
-                image: openimscore_fhoss_docker
-                tty: true
-                stdin_open: true
-                container_name: openims_fhoss
-                networks:
-                        appnet:
-                                ipv4_address: ${OPENIMS_FHOSS_IP}
-                                aliases:
-                                        - hss.${OPENIMS_IMS_DOMAIN}
-                                        - openimshss.${OPENIMS_IMS_DOMAIN}
-                volumes:
-                        - ./fhoss:/mnt
-                expose:
-                        - "8080/tcp"
-                ports:
-                        - "8080:8080/tcp"
-                depends_on:
-                        openims_mysql:
-                                condition: service_healthy
+#        openims_fhoss:
+#                env_file:
+#                        - ../.env
+#                build: ./fhoss
+#                image: openimscore_fhoss_docker
+#                tty: true
+#                stdin_open: true
+#                container_name: openims_fhoss
+#                networks:
+#                        appnet:
+#                                ipv4_address: ${OPENIMS_FHOSS_IP}
+#                                aliases:
+#                                        - hss.${OPENIMS_IMS_DOMAIN}
+#                                        - openimshss.${OPENIMS_IMS_DOMAIN}
+#                volumes:
+#                        - ./fhoss:/mnt
+#                expose:
+#                        - "8080/tcp"
+#                ports:
+#                        - "8080:8080/tcp"
+#                depends_on:
+#                        openims_mysql:
+#                                condition: service_healthy
         openims_dns:
                 env_file:
                         - ../.env

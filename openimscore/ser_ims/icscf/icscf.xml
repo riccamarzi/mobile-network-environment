@@ -10,15 +10,17 @@
 	Workers="4"
 	QueueLength="8"
 >
-	<Peer FQDN="openimshss.IMS_DOMAIN" Realm="IMS_DOMAIN" port="3868"/> 
+	<Peer FQDN="hss.IMS_DOMAIN" Realm="IMS_DOMAIN" port="3868"/> 
 
 	<Acceptor port="3869" bind="ICSCF_IP"/>
 	
 	<Auth id="16777216" vendor="10415"/><!-- 3GPP Cx -->
+	<Auth id="16777251" vendor="10415"/><!-- 3GPP Cx -->
+	<Auth id="16777251" vendor="0"/><!-- 3GPP Cx -->
 	<Auth id="16777216" vendor="4491"/><!-- CableLabs Cx -->
 	<Auth id="16777216" vendor="13019"/><!-- ETSI/TISPAN Cx -->
 
-	<DefaultRoute FQDN="openimshss.IMS_DOMAIN" metric="10"/>
+	<DefaultRoute FQDN="hss.IMS_DOMAIN" metric="10"/>
 	
 <!-- Realm Routing configuration - Uncomment and Edit!
 

@@ -25,6 +25,7 @@ _sip._udp.scscf						1D SRV 0 0 6060         scscf
 _sip._udp.scscf						1D SRV 0 0 6060         scscf
 
 openimshss						1D IN A			FHOSS_IP
+hss							1D IN A			HSS_IP
 
 ecscf							1D IN A			ECSCF_IP
 lrf							1D IN A			LRF_IP

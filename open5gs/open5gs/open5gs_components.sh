@@ -85,7 +85,6 @@ case $OPEN5GS_COMPONENT in
 		sed -i "s/KAMAILIO_IMS_DOMAIN/$KAMAILIO_IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		sed -i "s/OPENIMS_IMS_DOMAIN/$OPENIMS_IMS_DOMAIN/g" /open5gs/install/etc/freeDiameter/pcrf.conf
 		/open5gs/install/bin/open5gs-pcrfd
-		#bash
 		;;
 	nrf)
 		cp /mnt/nrf.yaml /open5gs/install/etc/open5gs
